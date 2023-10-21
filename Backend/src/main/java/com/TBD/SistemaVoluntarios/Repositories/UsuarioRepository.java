@@ -12,4 +12,5 @@ public interface UsuarioRepository extends JpaRepository<UsuarioEntity, Integer>
     ArrayList<UsuarioEntity> findAllByRol(String rol);
     UsuarioEntity findByID_USUARIO(Integer id);
     UsuarioEntity findByEmail(String email);
+
 }

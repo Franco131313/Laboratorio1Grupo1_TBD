@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping("/voluntario")
+@RequestMapping("/api/voluntario")
 public class VoluntarioController {
     @Autowired
     VoluntarioService voluntarioService;

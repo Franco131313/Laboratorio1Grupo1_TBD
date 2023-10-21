@@ -12,10 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping("/rank")
+@RequestMapping("/api/rank")
 public class RankingController {
     @Autowired
     RankingService rankingService;
+
 
     @GetMapping("lista")
     public ResponseEntity<ArrayList<RankingEntity>> listar(Model model)

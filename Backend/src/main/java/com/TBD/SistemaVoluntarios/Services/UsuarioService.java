@@ -21,12 +21,30 @@ public class UsuarioService {
         return usuarioRepository.findAllByRol(Rol);
     }
 
-    public void guardarUsuario(String email, String rol)
+    public UsuarioEntity porID(Integer id)
+    {
+        return usuarioRepository.findByID_USUARIO(id);
+    }
+    public UsuarioEntity porEmail(String email)
+    {
+        return usuarioRepository.findByEmail(email);
+    }
+    public String guardarUsuario(String email, String pass, String rol)
     {
         UsuarioEntity usuario = new UsuarioEntity();
         usuario.setEmail(email);
+        usuario.setPassword(pass);
         usuario.setRol(rol);
         usuarioRepository.save(usuario);
+        usuario.setID_USUARIO(usuarioRepository.findByEmail(email).getID_USUARIO());
+        if(usuarioRepository.findByEmail(email) == usuario)
+        {
+            return "Exito";
+        }
+        else {
+            return "Fracaso";
+        }
+
     }
 
     public void eliminarUsuarioPorEmail(String email)
