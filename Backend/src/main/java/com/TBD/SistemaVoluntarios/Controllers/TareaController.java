@@ -21,7 +21,7 @@ public class TareaController {
         this.tareaRepository = tareaRepository;
     }
 
-    @GetMapping("lista-tarea")
+    @GetMapping("/lista-tarea")
     public ResponseEntity<List<TareaEntity>> listar(Model model)
     {
         return ResponseEntity.ok(tareaRepository.findAll());

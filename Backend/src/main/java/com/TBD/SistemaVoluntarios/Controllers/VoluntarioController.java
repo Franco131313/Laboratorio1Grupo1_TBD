@@ -1,8 +1,7 @@
 package com.TBD.SistemaVoluntarios.Controllers;
 
 import com.TBD.SistemaVoluntarios.Entities.VoluntarioEntity;
-import com.TBD.SistemaVoluntarios.RepositoriesImplement.VoluntarioService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.TBD.SistemaVoluntarios.Repositories.VoluntarioRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,17 +9,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/voluntario")
 public class VoluntarioController {
-    @Autowired
-    VoluntarioService voluntarioService;
+    private final VoluntarioRepository voluntarioRepository;
+
+    public VoluntarioController(VoluntarioRepository voluntarioRepository) {
+        this.voluntarioRepository = voluntarioRepository;
+    }
 
     @GetMapping("/lista-voluntarios")
-    public ResponseEntity<ArrayList<VoluntarioEntity>> listar(Model model) {
-        ArrayList<VoluntarioEntity> voluntarioEntities = voluntarioService.todos();
-        model.addAttribute("voluntarios", voluntarioEntities);
-        return ResponseEntity.ok(voluntarioEntities);
+    public ResponseEntity<List<VoluntarioEntity>> listar(Model model) {
+
+        return ResponseEntity.ok(voluntarioRepository.findAll());
     }
 }

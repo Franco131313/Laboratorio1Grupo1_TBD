@@ -20,7 +20,7 @@ public class TareaHabilidadController {
         this.tareaHabilidadRepository = tareaHabilidadRepository;
     }
 
-    @GetMapping("lista-tareaHabilidad")
+    @GetMapping("/lista-tareaHabilidad")
     public ResponseEntity<List<TareaHabilidadEntity>> listar(Model model)
     {
         return ResponseEntity.ok(tareaHabilidadRepository.findAll());
