@@ -1,14 +1,10 @@
 package com.TBD.SistemaVoluntarios.Repositories;
 
 import com.TBD.SistemaVoluntarios.Entities.EmeHabilidadEntity;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import java.util.List;
 
-import java.util.ArrayList;
+public interface EmeHabilidadRepository{
 
-@Repository
-public interface EmeHabilidadRepository  extends JpaRepository<EmeHabilidadEntity, Integer> {
-
-    ArrayList<EmeHabilidadEntity> findAll();
+    List<EmeHabilidadEntity> findAll();
 
 }

@@ -5,8 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.List;
 
-@Repository
-public interface InstitucionRepository extends JpaRepository<InstitucionEntity, Integer>{
-    ArrayList<InstitucionEntity> findAll();
+public interface InstitucionRepository{
+    List<InstitucionEntity> findAll();
 }

@@ -1,21 +1,13 @@
 package com.TBD.SistemaVoluntarios.Entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-/**
- * CREATE TABLE tarea_habilidad(
- * 	ID_TARHAB NUMERIC(8) PRIMARY KEY,
- * 	ID_EME_HAB NUMERIC(8),
- * 	ID_TAREA NUMERIC(8)
- * );
- */
-@Entity
-@Table(name="tarea_habilidad")
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
+@Getter
+@Setter
 @Data
 
 public class TareaHabilidadEntity {

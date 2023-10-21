@@ -1,7 +1,7 @@
 package com.TBD.SistemaVoluntarios.Controllers;
 
 import com.TBD.SistemaVoluntarios.Entities.TareaHabilidadEntity;
-import com.TBD.SistemaVoluntarios.Services.TareaHabilidadService;
+import com.TBD.SistemaVoluntarios.RepositoriesImplement.TareaHabilidadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;

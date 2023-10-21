@@ -1,7 +1,8 @@
 package com.TBD.SistemaVoluntarios.Controllers;
 
 import com.TBD.SistemaVoluntarios.Entities.EmergenciaEntity;
-import com.TBD.SistemaVoluntarios.Services.EmergenciaService;
+import com.TBD.SistemaVoluntarios.Repositories.EmergenciaRepository;
+import com.TBD.SistemaVoluntarios.RepositoriesImplement.EmergenciaRepoImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -10,18 +11,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
-@RestController
-@RequestMapping("/emergencia")
-public class EmergenciaController {
-    @Autowired
-    EmergenciaService emergenciaService;
+import java.util.List;
 
-    @GetMapping("lista-emergencia")
-    public ResponseEntity<ArrayList<EmergenciaEntity>> listar(Model model)
+@RestController
+@RequestMapping("/api/emergencia")
+public class EmergenciaController {
+
+    private final EmergenciaRepository emergenciaRepository;
+
+    EmergenciaController(EmergenciaRepository EmergenciaRepository){
+        this.emergenciaRepository = EmergenciaRepository;
+    }
+
+
+    @GetMapping("/lista-emergencia")
+    public ResponseEntity<List<EmergenciaEntity>> listar(Model model)
     {
-        ArrayList<EmergenciaEntity> emergenciaEntities = emergenciaService.todos();
-        model.addAttribute("emergencias", emergenciaEntities);
-        return ResponseEntity.ok(emergenciaEntities);
+        return ResponseEntity.ok(emergenciaRepository.findAll());
     }
 
 

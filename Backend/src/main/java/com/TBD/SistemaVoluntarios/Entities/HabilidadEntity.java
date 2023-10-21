@@ -1,22 +1,14 @@
 package com.TBD.SistemaVoluntarios.Entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-/**
- * CREATE TABLE habilidad(
- * 	ID_HABILIDAD NUMERIC(4) PRIMARY KEY,
- * 	descrip VARCHAR(100)
- * );
- */
-@Entity
-@Table(name="habilidad")
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
+@Getter
+@Setter
 @Data
-
 public class HabilidadEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

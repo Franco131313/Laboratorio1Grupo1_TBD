@@ -6,8 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 
-@Repository
-public interface VoluntarioRepository extends JpaRepository<VoluntarioEntity, Integer> {
+public interface VoluntarioRepository {
     ArrayList<VoluntarioEntity> findAll();
 
     VoluntarioEntity findByNombre(String nombre);

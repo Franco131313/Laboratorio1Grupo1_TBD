@@ -1,7 +1,7 @@
 package com.TBD.SistemaVoluntarios.Controllers;
 
 import com.TBD.SistemaVoluntarios.Entities.VolHabilidadEntity;
-import com.TBD.SistemaVoluntarios.Services.VolHabilidadService;
+import com.TBD.SistemaVoluntarios.RepositoriesImplement.VolHabilidadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;

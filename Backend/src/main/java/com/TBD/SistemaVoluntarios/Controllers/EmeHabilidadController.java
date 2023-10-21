@@ -1,7 +1,7 @@
 package com.TBD.SistemaVoluntarios.Controllers;
 
 import com.TBD.SistemaVoluntarios.Entities.EmeHabilidadEntity;
-import com.TBD.SistemaVoluntarios.Services.EmeHabilidadService;
+import com.TBD.SistemaVoluntarios.Repositories.EmeHabilidadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -10,19 +10,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 @RestController
-@RequestMapping("/emeHabilidad")
+@RequestMapping("/api/emeHabilidad")
 public class EmeHabilidadController {
-    @Autowired
-    EmeHabilidadService emeHabilidadService;
 
-    @GetMapping("lista-emeHabilidad")
-    public ResponseEntity<ArrayList<EmeHabilidadEntity>> listar(Model model)
+    EmeHabilidadRepository emeHabilidadRepository;
+
+    EmeHabilidadController(EmeHabilidadRepository EmeHabilidadRepository){
+        this.emeHabilidadRepository = EmeHabilidadRepository;
+    }
+
+
+    @GetMapping("/lista-emeHabilidad")
+    public ResponseEntity<List<EmeHabilidadEntity>> listar(Model model)
     {
-        ArrayList<EmeHabilidadEntity> emeHabilidadEntities = emeHabilidadService.todos();
-        model.addAttribute("emeHabilidades", emeHabilidadEntities);
-        return ResponseEntity.ok(emeHabilidadEntities);
+        return ResponseEntity.ok(emeHabilidadRepository.findAll());
     }
 }

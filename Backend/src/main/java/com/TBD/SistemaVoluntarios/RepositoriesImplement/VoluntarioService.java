@@ -1,16 +1,22 @@
-package com.TBD.SistemaVoluntarios.Services;
+package com.TBD.SistemaVoluntarios.RepositoriesImplement;
 
 import com.TBD.SistemaVoluntarios.Entities.VoluntarioEntity;
 import com.TBD.SistemaVoluntarios.Repositories.VoluntarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.sql2o.Sql2o;
 
 import java.util.ArrayList;
 
 @Service
 public class VoluntarioService {
     @Autowired
-    VoluntarioRepository voluntarioRepository;
+    private VoluntarioRepository voluntarioRepository;
+
+
+    @Autowired
+    public VoluntarioService(Sql2o sql2o) {
+    }
 
     public ArrayList<VoluntarioEntity> todos()
     {

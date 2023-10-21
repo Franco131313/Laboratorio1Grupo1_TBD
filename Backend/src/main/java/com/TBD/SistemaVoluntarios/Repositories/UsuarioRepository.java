@@ -6,8 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 
-@Repository
-public interface UsuarioRepository extends JpaRepository<UsuarioEntity, Integer> {
+public interface UsuarioRepository{
     ArrayList<UsuarioEntity> findAll();
     ArrayList<UsuarioEntity> findAllByRol(String rol);
     UsuarioEntity findByID_USUARIO(Integer id);

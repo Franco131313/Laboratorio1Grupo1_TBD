@@ -6,9 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.List;
 
-@Repository
-public interface HabilidadRepository extends JpaRepository<HabilidadEntity, Integer>{
-    ArrayList<HabilidadEntity> findAll();
+public interface HabilidadRepository{
+    List<HabilidadEntity> findAll();
 
 }

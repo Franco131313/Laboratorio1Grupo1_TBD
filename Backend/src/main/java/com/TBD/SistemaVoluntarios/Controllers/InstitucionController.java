@@ -1,7 +1,8 @@
 package com.TBD.SistemaVoluntarios.Controllers;
 
 import com.TBD.SistemaVoluntarios.Entities.InstitucionEntity;
-import com.TBD.SistemaVoluntarios.Services.InstitucionService;
+import com.TBD.SistemaVoluntarios.Repositories.InstitucionRepository;
+import com.TBD.SistemaVoluntarios.RepositoriesImplement.InstitucionRepoImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -10,19 +11,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/institucion")
 public class InstitucionController {
-    @Autowired
-    InstitucionService institucionService;
 
-    @GetMapping("lista-institucion")
-    public ResponseEntity<ArrayList<InstitucionEntity>> listar(Model model)
+    private final InstitucionRepository institucionRepository;
+
+    InstitucionController(InstitucionRepository InstitucionRepository){
+        this.institucionRepository = InstitucionRepository;
+    }
+
+    @GetMapping("/lista-institucion")
+    public ResponseEntity<List<InstitucionEntity>> listar(Model model)
     {
-        ArrayList<InstitucionEntity> institucionEntities = institucionService.todos();
-        model.addAttribute("instituciones", institucionEntities);
-        return ResponseEntity.ok(institucionEntities);
+        return ResponseEntity.ok(institucionRepository.findAll());
     }
 
 }

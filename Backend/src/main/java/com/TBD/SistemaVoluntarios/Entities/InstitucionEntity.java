@@ -1,21 +1,13 @@
 package com.TBD.SistemaVoluntarios.Entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-/**
- * CREATE TABLE institucion(
- * 	ID_INSTITUCION NUMERIC(4) PRIMARY KEY,
- * 	nombre VARCHAR(100),
- * 	descrip VARCHAR(400)
- * );
- */
-@Entity
-@Table(name="institucion")
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
+@Getter
+@Setter
 @Data
 
 public class InstitucionEntity {

@@ -1,8 +1,7 @@
 package com.TBD.SistemaVoluntarios.Controllers;
 
-import com.TBD.SistemaVoluntarios.Entities.UsuarioEntity;
 import com.TBD.SistemaVoluntarios.Entities.VoluntarioEntity;
-import com.TBD.SistemaVoluntarios.Services.VoluntarioService;
+import com.TBD.SistemaVoluntarios.RepositoriesImplement.VoluntarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;

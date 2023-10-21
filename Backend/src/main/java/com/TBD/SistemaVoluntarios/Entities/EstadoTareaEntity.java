@@ -1,22 +1,14 @@
 package com.TBD.SistemaVoluntarios.Entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-/**
- * CREATE TABLE estado_tarea(
- * 	ID_ESTADO NUMERIC(2) PRIMARY KEY,
- * 	descrip VARCHAR(20)
- * );
- */
-@Entity
-@Table(name="estado_tarea")
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
+@Getter
+@Setter
 @Data
-
 public class EstadoTareaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
