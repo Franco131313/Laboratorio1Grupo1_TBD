@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/habilidad")
+@RequestMapping("/api/habilidad")
 public class HabilidadController {
 
     private final HabilidadRepository habilidadRepository;

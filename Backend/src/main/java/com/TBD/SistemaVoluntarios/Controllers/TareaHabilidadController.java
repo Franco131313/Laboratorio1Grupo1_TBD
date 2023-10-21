@@ -1,8 +1,7 @@
 package com.TBD.SistemaVoluntarios.Controllers;
 
 import com.TBD.SistemaVoluntarios.Entities.TareaHabilidadEntity;
-import com.TBD.SistemaVoluntarios.RepositoriesImplement.TareaHabilidadService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.TBD.SistemaVoluntarios.Repositories.TareaHabilidadRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,18 +9,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
-@RequestMapping("/tareaHabilidad")
+@RequestMapping("/api/tareaHabilidad")
 public class TareaHabilidadController {
-    @Autowired
-    TareaHabilidadService tareaHabilidadService;
+    private final TareaHabilidadRepository tareaHabilidadRepository;
+
+    public TareaHabilidadController(TareaHabilidadRepository tareaHabilidadRepository) {
+        this.tareaHabilidadRepository = tareaHabilidadRepository;
+    }
 
     @GetMapping("lista-tareaHabilidad")
-    public ResponseEntity<ArrayList<TareaHabilidadEntity>> listar(Model model)
+    public ResponseEntity<List<TareaHabilidadEntity>> listar(Model model)
     {
-        ArrayList<TareaHabilidadEntity> tareaHabilidadEntities = tareaHabilidadService.todos();
-        model.addAttribute("tareaHabilidades", tareaHabilidadEntities);
-        return ResponseEntity.ok(tareaHabilidadEntities);
+        return ResponseEntity.ok(tareaHabilidadRepository.findAll());
     }
 }
