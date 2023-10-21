@@ -5,6 +5,18 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
+/**
+ * CREATE TABLE ranking(
+ * 	ID_RANKING NUMERIC(8) PRIMARY KEY,
+ * 	ID_VOLUNTARIO NUMERIC(8),
+ * 	ID_TAREA NUMERIC(8),
+ * 	puntaje NUMERIC(3,2),
+ * 	flg_invitado NUMERIC(1),
+ * 	flg_participa NUMERIC(1)
+ * );
+ *
+ */
 @Entity
 @Table(name="ranking")
 @NoArgsConstructor

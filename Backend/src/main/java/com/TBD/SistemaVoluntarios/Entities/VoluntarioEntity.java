@@ -6,6 +6,14 @@ import lombok.Data;
 import lombok.Generated;
 import lombok.NoArgsConstructor;
 
+/**
+ * CREATE TABLE voluntario(
+ * 	ID_VOLUNTARIO INTEGER PRIMARY KEY,
+ * 	ID_USUARIO INTEGER,
+ * 	nombre VARCHAR(100),
+ * 	ubi_vol GEOMETRY(Point, 4326)
+ * );
+ */
 @Entity
 @Table(name="voluntario")
 @NoArgsConstructor
