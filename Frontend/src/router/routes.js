@@ -12,8 +12,10 @@ const routes = [
   },
   {
     path: '/registro',
-    component: Registro,
-    name: 'registro',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', component: () => import('components/RegistroForm.vue') },
+    ]
   },
   {
     path: '/inicio-sesion',

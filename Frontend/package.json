@@ -12,11 +12,14 @@
     "build": "quasar build"
   },
   "dependencies": {
-    "@quasar/extras": "^1.16.4",
+    "@quasar/extras": "^1.16.7",
     "axios": "^1.2.1",
     "core-js": "^3.6.5",
+    "leaflet": "^1.9.4",
     "quasar": "^1.0.0",
-    "volar-service-vetur": "^0.0.14"
+    "volar-service-vetur": "^0.0.14",
+    "vue-browser-geolocation": "^1.8.0",
+    "vue-mapbox": "^0.4.1"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.13.14",
@@ -25,7 +28,8 @@
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-vue": "^9.0.0",
     "eslint-webpack-plugin": "^2.0.0",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "vue2-google-maps": "^0.10.7"
   },
   "browserslist": [
     "last 10 Chrome versions",
