@@ -21,4 +21,6 @@ public class VoluntarioEntity {
     //que las coordenadas son angulares.
     private Float latitud;
     private Float longitud;
+
+
 }

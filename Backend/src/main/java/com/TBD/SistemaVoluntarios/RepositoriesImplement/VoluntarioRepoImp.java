@@ -1,5 +1,6 @@
 package com.TBD.SistemaVoluntarios.RepositoriesImplement;
 
+
 import com.TBD.SistemaVoluntarios.Entities.VoluntarioEntity;
 import com.TBD.SistemaVoluntarios.Repositories.VoluntarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,24 +14,27 @@ public class VoluntarioRepoImp implements VoluntarioRepository{
     @Autowired
     Sql2o sql2o;
 
-    /*
-    public void nuevoVoluntario(Integer id_user, String nombre, Float latitud, Float longitud)
+    //CREATE: Agregar un voluntario
+    @Override
+    public void agregarVoluntario(VoluntarioEntity voluntario)
     {
-        VoluntarioEntity voluntario = new VoluntarioEntity();
-        voluntario.setID_USUARIO(id_user);
-        voluntario.setNombre(nombre);
-        voluntario.setLatitud(latitud);
-        voluntario.setLongitud(longitud);
-        voluntarioRepository.save(voluntario);
+        try (Connection con = sql2o.open()) {
+            String LonStr = Float.toString(voluntario.getLongitud());
+            String LatStr = Float.toString(voluntario.getLatitud());
+            String sql = "INSERT INTO voluntario (ID_USUARIO, nombre, ubi_vol)" +
+                    "VALUES (:ID_USUARIO, :nombre, ST_GeomFromText('POINT(" + LonStr + " " + LatStr + ")', 4326))";
+            con.createQuery(sql)
+                    .addParameter("ID_USUARIO", voluntario.getID_USUARIO())
+                    .addParameter("nombre", voluntario.getNombre())
+                    .executeUpdate();
+        }
     }
 
-     */
-
+    //READ: Buscar todos los voluntarios.
     @Override
     public List<VoluntarioEntity> findAll() {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("select id, nombre, id_usuario, ST_X(geom) AS longitud, " +
-                            "ST_Y(geom) AS latitud from Voluntario order by id")
+            return conn.createQuery("select * from voluntario order by id")
                     .executeAndFetch(VoluntarioEntity.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -40,29 +44,52 @@ public class VoluntarioRepoImp implements VoluntarioRepository{
 
     @Override
     public VoluntarioEntity findByNombre(String nombre) {
+        return null;
+    }
+
+    @Override
+    public VoluntarioEntity findByID_USUARIO(Integer id) {
+        return null;
+    }
+
+    //READ: Buscar a un voluntario a partir de su ID.
+    @Override
+    public VoluntarioEntity findByID_VOLUNTARIO(Integer id) {
         try (Connection conn = sql2o.open()) {
-            List<VoluntarioEntity> voluntarios = conn.createQuery("select id, nombre, id_usuario, " +
-                            "ST_X(geom) AS longitud, ST_Y(geom) AS latitud from Voluntario where nombre = :nombre")
-                    .addParameter("nombre", nombre)
+            List <VoluntarioEntity> voluntario = conn.createQuery("select * from voluntario where ID_VOLUNTARIO=:id")
+                    .addParameter("ID_VOLUNTARIO", id)
                     .executeAndFetch(VoluntarioEntity.class);
-            return voluntarios.get(0);
+            return voluntario.get(0);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
         }
     }
 
+    //UPDATE: Actualiza la ubicacion de un voluntario.
     @Override
-    public VoluntarioEntity findByID_USUARIO(Integer id) {
-        try (Connection conn = sql2o.open()) {
-            List<VoluntarioEntity> voluntarios = conn.createQuery("select id, nombre, id_usuario, " +
-                            "ST_X(geom) AS longitud, ST_Y(geom) AS latitud from Voluntario where id_usuario = :id")
-                    .addParameter("id_usuario", id)
-                    .executeAndFetch(VoluntarioEntity.class);
-            return voluntarios.get(0);
+    public void updateUbicacion(Integer id, float nuevaLongitud, float nuevaLatitud) {
+        try (Connection con = sql2o.open()) {
+            String sql = "UPDATE voluntario SET ubi_vol = ST_GeomFromText('POINT(:nuevaLongitud :nuevaLatitud)', 4326) WHERE ID_VOLUNTARIO = :id";
+            con.createQuery(sql)
+                    .addParameter("nuevaLongitud", nuevaLongitud)
+                    .addParameter("nuevaLatitud", nuevaLatitud)
+                    .addParameter("idVoluntario", id)
+                    .executeUpdate();
+        }
+    }
+
+
+    // DELETE: elimina un voluntario por ID
+    @Override
+    public void deleteById(Integer id) {
+        try (Connection con = sql2o.open()) {
+            String sql = "DELETE FROM voluntario WHERE ID_VOLUNTARIO = :id";
+            con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeUpdate();
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return null;
         }
     }
 }
