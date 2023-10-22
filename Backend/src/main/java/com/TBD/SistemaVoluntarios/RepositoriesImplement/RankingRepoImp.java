@@ -2,17 +2,14 @@ package com.TBD.SistemaVoluntarios.RepositoriesImplement;
 
 import com.TBD.SistemaVoluntarios.Entities.RankingEntity;
 import com.TBD.SistemaVoluntarios.Repositories.RankingRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class RankingRepoImp {
+public class RankingRepoImp implements RankingRepository {
 
     private final Sql2o sql2o;
 
@@ -21,21 +18,23 @@ public class RankingRepoImp {
     }
 
     // CREATE: crear un nuevo ranking en la bd
+    @Override
     public void createRanking(RankingEntity ranking)
     {
         try (Connection con = sql2o.open()) {
             String sql = "INSERT INTO ranking (ID_VOLUNTARIO, ID_TAREA, puntaje, flg_invitado, flg_participa) " +
                     "VALUES (:voluntarioId, :tareaId, :puntaje, :flgInvitado, :flgParticipa)";
             con.createQuery(sql)
-                    .addParameter("voluntarioId", ranking.getID_VOLUNTARIO())
-                    .addParameter("tareaId", ranking.getID_TAREA())
+                    .addParameter("ID_VOLUNTARIO", ranking.getID_VOLUNTARIO())
+                    .addParameter("ID_TAREA", ranking.getID_TAREA())
                     .addParameter("puntaje", ranking.getPuntaje())
-                    .addParameter("flgInvitado", ranking.getFlg_invitado())
-                    .addParameter("flgParticipa", ranking.getFlg_participa())
+                    .addParameter("flg_invitado", ranking.getFlg_invitado())
+                    .addParameter("flg_participa", ranking.getFlg_participa())
                     .executeUpdate();
         }
     }
 
+    @Override
     // READ: Obtener todos los rankings
     public List<RankingEntity> leerTodoElRanking() {
         try (Connection con = sql2o.open()) {
@@ -44,6 +43,7 @@ public class RankingRepoImp {
         }
     }
 
+    @Override
     // READ: leer ranking por ID
     public RankingEntity leerRankingPorId(Integer id) {
         try (Connection con = sql2o.open()) {
@@ -54,6 +54,7 @@ public class RankingRepoImp {
         }
     }
 
+    @Override
     // UPDATE: actualiza el puntaje de un ranking, en base a un ID.
     public void actualizarPuntaje(Integer id, Integer nuevoPuntaje) {
         try (Connection con = sql2o.open()) {
@@ -65,6 +66,7 @@ public class RankingRepoImp {
         }
     }
 
+    @Override
     // DELETE: elimina un ranking por ID
     public void eliminarRankingPorId(Integer id) {
         try (Connection con = sql2o.open()) {
