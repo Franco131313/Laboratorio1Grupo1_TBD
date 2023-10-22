@@ -20,7 +20,7 @@ public class RankingRepoImp {
         this.sql2o = sql2o;
     }
 
-    // CREATE: crear un nuevo ranking
+    // CREATE: crear un nuevo ranking en la bd
     public void createRanking(RankingEntity ranking)
     {
         try (Connection con = sql2o.open()) {
