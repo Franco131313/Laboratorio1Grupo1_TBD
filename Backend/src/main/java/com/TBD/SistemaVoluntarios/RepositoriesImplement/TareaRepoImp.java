@@ -18,7 +18,6 @@ public class TareaRepoImp implements TareaRepository{
         this.sql2o = sql2o;
     }
 
-
     //CREATE: Crear una nueva tarea
     @Override
     public void createTarea(TareaEntity tarea)
