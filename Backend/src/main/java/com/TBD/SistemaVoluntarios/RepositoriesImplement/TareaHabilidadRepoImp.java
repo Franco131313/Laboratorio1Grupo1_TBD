@@ -3,16 +3,20 @@ package com.TBD.SistemaVoluntarios.RepositoriesImplement;
 import com.TBD.SistemaVoluntarios.Entities.TareaHabilidadEntity;
 import com.TBD.SistemaVoluntarios.Repositories.TareaHabilidadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
 import java.util.List;
 
-@Service
+@Repository
 public class TareaHabilidadRepoImp implements TareaHabilidadRepository {
     @Autowired
-    Sql2o sql2o;
+    private final Sql2o sql2o;
+
+    public TareaHabilidadRepoImp(Sql2o sql2o) {
+        this.sql2o = sql2o;
+    }
 
     @Override
     public List<TareaHabilidadEntity> findAll() {

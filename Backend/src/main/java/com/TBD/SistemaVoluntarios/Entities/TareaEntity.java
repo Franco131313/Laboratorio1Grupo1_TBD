@@ -19,6 +19,8 @@ public class TareaEntity {
     private String descrip;
     private Date fecha_inicio;
     private Date fecha_fin;
+    private Integer cant_vol_requeridos;
+    private Integer cant_vol_inscritos;
     private Integer ID_EMERGENCIA;
     private Integer ID_ESTADO;
 }

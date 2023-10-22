@@ -12,5 +12,11 @@ public interface UsuarioRepository{
     List<UsuarioEntity> findAllByRol(String rol);
     UsuarioEntity findByID_USUARIO(Integer id);
     UsuarioEntity findByEmail(String email);
+    void createUsuario(UsuarioEntity usuario);
 
+    //UPDATE: Actualiza el Password de un usuario
+    void updatePass(Integer id, String nuevoPass);
+
+    void deleteById(Integer Id);
+    void updateEmail(Integer id, String email);
 }

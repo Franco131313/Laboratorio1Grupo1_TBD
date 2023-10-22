@@ -2,6 +2,7 @@ package com.TBD.SistemaVoluntarios.RepositoriesImplement;
 
 import com.TBD.SistemaVoluntarios.Entities.RankingEntity;
 import com.TBD.SistemaVoluntarios.Repositories.RankingRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
@@ -10,7 +11,7 @@ import java.util.List;
 
 @Repository
 public class RankingRepoImp implements RankingRepository {
-
+    @Autowired
     private final Sql2o sql2o;
 
     public RankingRepoImp(Sql2o sql2o) {

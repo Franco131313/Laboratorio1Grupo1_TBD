@@ -3,6 +3,7 @@ package com.TBD.SistemaVoluntarios.RepositoriesImplement;
 import com.TBD.SistemaVoluntarios.Entities.VoluntarioEntity;
 import com.TBD.SistemaVoluntarios.Repositories.VoluntarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
@@ -10,7 +11,7 @@ import org.sql2o.Sql2o;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@Repository
 public class VoluntarioRepoImp implements VoluntarioRepository{
     @Autowired
     Sql2o sql2o;

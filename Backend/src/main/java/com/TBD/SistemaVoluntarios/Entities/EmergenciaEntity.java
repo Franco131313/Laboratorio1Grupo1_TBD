@@ -18,7 +18,7 @@ public class EmergenciaEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ID_EMERGENCIA;
     private String nombre;
-    private String descripcion;
+    private String descrip;
     private Date fecha_inicio;
     private Date fecha_fin;
     private Integer ID_INSTITUCION;

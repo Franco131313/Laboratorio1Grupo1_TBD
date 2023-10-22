@@ -2,52 +2,37 @@ package com.TBD.SistemaVoluntarios.RepositoriesImplement;
 
 import com.TBD.SistemaVoluntarios.Entities.UsuarioEntity;
 import com.TBD.SistemaVoluntarios.Repositories.UsuarioRepository;
-import org.hibernate.query.SelectionQuery;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import java.util.List;
 
-@Service
+@Repository
 public class UsuarioRepoImp implements UsuarioRepository{
     @Autowired
-    Sql2o sql2o;
-    /*
-    public UsuarioEntity porID(Integer id)
-    {
-        return usuarioRepository.findByID_USUARIO(id);
+    private final Sql2o sql2o;
+
+    public UsuarioRepoImp(Sql2o sql2o) {
+        this.sql2o = sql2o;
     }
-    public String guardarUsuario(String email, String pass, String rol)
+
+    //CREATE: Crear un nuevo usuario
+    @Override
+    public void createUsuario(UsuarioEntity usuario)
     {
-        UsuarioEntity usuario = new UsuarioEntity();
-        usuario.setEmail(email);
-        usuario.setPassword(pass);
-        usuario.setRol(rol);
-        usuarioRepository.save(usuario);
-        usuario.setID_USUARIO(usuarioRepository.findByEmail(email).getID_USUARIO());
-        if(usuarioRepository.findByEmail(email) == usuario)
-        {
-            return "Exito";
+        try (Connection con = sql2o.open()) {
+            String sql = "INSERT INTO usuario (email, password, rol) " +
+                    "VALUES (:usuario, :password, :rol)";
+            con.createQuery(sql)
+                    .addParameter("usuario", usuario.getEmail())
+                    .addParameter("tareaId", usuario.getPassword())
+                    .addParameter("puntaje", usuario.getRol())
+                    .executeUpdate();
         }
-        else {
-            return "Fracaso";
-        }
-
     }
 
-    public void eliminarUsuarioPorEmail(String email)
-    {
-        UsuarioEntity usuario = usuarioRepository.findByEmail(email);
-        usuarioRepository.delete(usuario);
-    }
-    public String rolPorID(Integer id)
-    {
-        UsuarioEntity usuario = usuarioRepository.findByID_USUARIO(id);
-        return usuario.getRol();
-    }
-
-     */
+    //READ: Buscar todos los usuarios
     @Override
     public List<UsuarioEntity> findAll() {
         try (Connection conn = sql2o.open()) {
@@ -59,6 +44,7 @@ public class UsuarioRepoImp implements UsuarioRepository{
         }
     }
 
+    //READ: Buscar a todos los usuarios que estén asociados a un rol determinado
     @Override
     public List<UsuarioEntity> findAllByRol(String rol) {
         try (Connection conn = sql2o.open()) {
@@ -71,6 +57,7 @@ public class UsuarioRepoImp implements UsuarioRepository{
         }
     }
 
+    //READ: Buscar a un usuario a partir de su ID
     @Override
     public UsuarioEntity findByID_USUARIO(Integer id) {
         try (Connection conn = sql2o.open()) {
@@ -84,6 +71,7 @@ public class UsuarioRepoImp implements UsuarioRepository{
         }
     }
 
+    //READ: Buscar a un usuario a partir de su e-mail
     @Override
     public UsuarioEntity findByEmail(String email) {
         try (Connection conn = sql2o.open()) {
@@ -94,6 +82,42 @@ public class UsuarioRepoImp implements UsuarioRepository{
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
+        }
+    }
+    //UPDATE: Actualiza el Email de un usuario
+    @Override
+    public void updateEmail(Integer id, String nuevoEmail) {
+        try (Connection con = sql2o.open()) {
+            String sql = "UPDATE usuario SET email = :nuevoEmail WHERE ID_USUARIO = :id";
+            con.createQuery(sql)
+                    .addParameter("nuevoEmail", nuevoEmail)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        }
+    }
+
+    //UPDATE: Actualiza el Password de un usuario
+    @Override
+    public void updatePass(Integer id, String nuevoPass) {
+        try (Connection con = sql2o.open()) {
+            String sql = "UPDATE usuario SET password = :nuevoPass WHERE ID_USUARIO = :id";
+            con.createQuery(sql)
+                    .addParameter("nuevoPass", nuevoPass)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        }
+    }
+
+    // DELETE: elimina un ranking por ID
+    @Override
+    public void deleteById(Integer id) {
+        try (Connection con = sql2o.open()) {
+            String sql = "DELETE FROM usuarios WHERE ID_USUARIO = :id";
+            con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 }
