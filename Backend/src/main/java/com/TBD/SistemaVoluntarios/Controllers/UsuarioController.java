@@ -2,9 +2,7 @@ package com.TBD.SistemaVoluntarios.Controllers;
 
 import com.TBD.SistemaVoluntarios.Entities.UsuarioEntity;
 import com.TBD.SistemaVoluntarios.Repositories.UsuarioRepository;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;

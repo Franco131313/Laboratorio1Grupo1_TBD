@@ -19,7 +19,7 @@ public class EmergenciaRepoImp implements EmergenciaRepository{
     @Override
     public List<EmergenciaEntity> findAll() {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("select id, nombre, descrip, finicio, ffin, id_institucion, " +
+            return conn.createQuery("select id, nombre, descrip, fecha_inicio, fecha_fin, id_institucion, " +
                             "ST_X(geom) AS longitud, ST_Y(geom) AS latitud from Emergencia order by id")
                     .executeAndFetch(EmergenciaEntity.class);
         } catch (Exception e) {

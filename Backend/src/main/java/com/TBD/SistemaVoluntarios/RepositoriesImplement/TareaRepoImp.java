@@ -19,7 +19,7 @@ public class TareaRepoImp implements TareaRepository{
     public List<TareaEntity> findAll() {
         try (Connection conn = sql2o.open()) {
             return conn.createQuery("select id, nombre, descrip, cant_vol_requeridos, cant_vol_inscritos, " +
-                            "id_emergencia, finicio, ffin, id_estado, ST_X(geom) AS longitud, " +
+                            "id_emergencia, fecha_inicio, fecha_fin, id_estado, ST_X(geom) AS longitud, " +
                             "ST_Y(geom) AS latitud from Tarea order by id ")
                     .executeAndFetch(TareaEntity.class);
         } catch (Exception e) {
