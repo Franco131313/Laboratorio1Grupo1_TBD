@@ -43,7 +43,7 @@ public class TareaController {
     }
 
     // UPDATE: Actualiza el estado de la tarea
-    @PutMapping("/{id}")
+    @PostMapping("/{id}")
     public ResponseEntity<String> updateInst(@PathVariable Integer id,
                                              @RequestParam("est") String est)
     {

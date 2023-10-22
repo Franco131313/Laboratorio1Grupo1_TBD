@@ -47,7 +47,7 @@ public class EmergenciaController {
     }
 
     // UPDATE: Actualiza la institucion de la emergencia
-    @PutMapping("/{id}")
+    @PostMapping("/{id}")
     public ResponseEntity<String> updateInst(@PathVariable Integer id,
                                              @RequestParam("Inst") String Inst)
     {
