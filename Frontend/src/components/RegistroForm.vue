@@ -32,6 +32,9 @@
             @click="registrarUsuario"
           />
         </q-card-actions>
+        <q-card-section align="right">
+          <router-link to="/">Volver al Inicio</router-link>
+        </q-card-section>
       </q-card>
     </q-page>
   </template>

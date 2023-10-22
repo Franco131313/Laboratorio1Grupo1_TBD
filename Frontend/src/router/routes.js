@@ -14,13 +14,15 @@ const routes = [
     path: '/registro',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('components/RegistroForm.vue') },
+      { path: '', component: () => import('pages/Registro.vue') },
     ]
   },
   {
     path: '/inicio-sesion',
-    component: InicioSesion,
-    name: 'inicio-sesion',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/InicioSesion.vue') },
+    ]
   },
 
   // Always leave this as last one,
