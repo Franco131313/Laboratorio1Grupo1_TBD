@@ -36,7 +36,7 @@ public class UsuarioRepoImp implements UsuarioRepository{
     @Override
     public List<UsuarioEntity> findAll() {
         try (Connection conn = sql2o.open()) {
-            return conn.createQuery("select * from Usuario order by id")
+            return conn.createQuery("select * from usuario order by id_usuario")
                     .executeAndFetch(UsuarioEntity.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());

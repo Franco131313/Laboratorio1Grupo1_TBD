@@ -98,7 +98,7 @@
           } else {
             const usuarioData = {
               email: this.correo,
-              pass: this.contrasenia,
+              password: this.contrasenia,
               rol: this.voluntarioSelected ? 'voluntario' : 'coordinador',
             };
 
@@ -109,7 +109,7 @@
                 // La solicitud fue exitosa, muestra un mensaje de éxito
                 alert('Usuario registrado exitosamente');
                 // También puedes redirigir al usuario a otra página, por ejemplo, la página de inicio de sesión
-                this.$router.push('/login');
+                this.$router.push('/');
               })
               .catch((error) => {
                 // La solicitud al backend falló, muestra un mensaje de error

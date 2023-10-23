@@ -20,13 +20,7 @@ public class UsuarioController {
 
     // CREATE: Crear un nuevo usuario
     @PostMapping("/agregar-usuario")
-    public ResponseEntity<String> nuevoUsuario(@RequestParam("email") String email,
-                                               @RequestParam("pass") String pass,
-                                               @RequestParam("rol") String rol) {
-        UsuarioEntity usuario = new UsuarioEntity();
-        usuario.setEmail(email);
-        usuario.setRol(rol);
-        usuario.setPassword(pass);
+    public ResponseEntity<String> nuevoUsuario(@RequestBody UsuarioEntity usuario){
         usuarioRepository.createUsuario(usuario);
         return ResponseEntity.ok("Usuario creado exitosamente");
     }
