@@ -13,10 +13,6 @@ public interface VoluntarioRepository {
 
     List<VoluntarioEntity> findAll();
 
-    VoluntarioEntity findByNombre(String nombre);
-
-    VoluntarioEntity findByID_USUARIO(Integer id);
-
     //READ: Buscar a un voluntario a partir de su ID.
     VoluntarioEntity findByID_VOLUNTARIO(Integer id);
 
