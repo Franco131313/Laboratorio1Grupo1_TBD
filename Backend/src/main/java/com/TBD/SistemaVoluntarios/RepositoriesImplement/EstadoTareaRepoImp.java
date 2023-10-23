@@ -19,10 +19,9 @@ public class EstadoTareaRepoImp implements  EstadoTareaRepository {
     public void createEstadoTarea(EstadoTareaEntity estadoTarea)
     {
         try (Connection con = sql2o.open()) {
-            String sql = "INSERT INTO estado_tarea (ID_ESTADO, descripcion)" +
-                    "VALUES (:ID_ESTADO, :descripcion)";
+            String sql = "INSERT INTO estado_tarea (descripcion)" +
+                    "VALUES (:descripcion)";
             con.createQuery(sql)
-                    .addParameter("ID_ESTADO", estadoTarea.getID_ESTADO())
                     .addParameter("descripcion", estadoTarea.getDescripcion())
                     .executeUpdate();
         }

@@ -23,10 +23,9 @@ public class TareaRepoImp implements TareaRepository{
     public void createTarea(TareaEntity tarea)
     {
         try (Connection con = sql2o.open()) {
-            String sql = "INSERT INTO tarea (ID_TAREA, nombre, descrip, fecha_inicio, fecha_fin, cant_vol_requeridos, cant_vol_inscritos, ID_EMERGENCIA, ID_ESTADO)" +
-                    "VALUES (:ID_TAREA, :nombre, :descrip, :fecha_inicio, :fecha_fin, :cant_vol_requeridos, :cant_vol_inscritos, :ID_EMERGENCIA, :ID_ESTADO)";
+            String sql = "INSERT INTO tarea (nombre, descrip, fecha_inicio, fecha_fin, cant_vol_requeridos, cant_vol_inscritos, ID_EMERGENCIA, ID_ESTADO)" +
+                    "VALUES (:nombre, :descrip, :fecha_inicio, :fecha_fin, :cant_vol_requeridos, :cant_vol_inscritos, :ID_EMERGENCIA, :ID_ESTADO)";
             con.createQuery(sql)
-                    .addParameter("ID_TAREA", tarea.getID_TAREA())
                     .addParameter("nombre", tarea.getNombre())
                     .addParameter("descrip", tarea.getDescrip())
                     .addParameter("fecha_inicio", tarea.getFecha_inicio())

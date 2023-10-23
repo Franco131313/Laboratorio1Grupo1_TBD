@@ -19,10 +19,9 @@ public class EmeHabilidadRepoImp implements EmeHabilidadRepository {
     public void createEmeHabilidad(EmeHabilidadEntity emeHabilidad)
     {
         try (Connection con = sql2o.open()) {
-            String sql = "INSERT INTO eme_habilidad (ID_EME_HAB, ID_EMERGENCIA, ID_HABILIDAD)" +
-                    "VALUES (:ID_EME_HAB, :ID_EMERGENCIA, :ID_HABILIDAD)";
+            String sql = "INSERT INTO eme_habilidad (ID_EMERGENCIA, ID_HABILIDAD)" +
+                    "VALUES (:ID_EMERGENCIA, :ID_HABILIDAD)";
             con.createQuery(sql)
-                    .addParameter("ID_EME_HAB", emeHabilidad.getID_EME_HAB())
                     .addParameter("ID_EMERGENCIA", emeHabilidad.getID_EMERGENCA())
                     .addParameter("ID_HABILIDAD", emeHabilidad.getID_HABILIDAD())
                     .executeUpdate();

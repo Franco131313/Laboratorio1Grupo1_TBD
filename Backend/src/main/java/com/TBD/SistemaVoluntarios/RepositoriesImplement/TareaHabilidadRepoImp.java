@@ -23,10 +23,9 @@ public class TareaHabilidadRepoImp implements TareaHabilidadRepository {
     public void createTareaHabilidad(TareaHabilidadEntity tareaHabilidad)
     {
         try (Connection con = sql2o.open()) {
-            String sql = "INSERT INTO tarea_habilidad (ID_TARHAB, ID_EME_HAB, ID_TAREA)" +
-                    "VALUES (:ID_TARHAB, :ID_EME_HAB, :ID_TAREA)";
+            String sql = "INSERT INTO tarea_habilidad (ID_EME_HAB, ID_TAREA)" +
+                    "VALUES (:ID_EME_HAB, :ID_TAREA)";
             con.createQuery(sql)
-                    .addParameter("ID_TARHAB", tareaHabilidad.getID_TARHAB())
                     .addParameter("ID_EME_HAB", tareaHabilidad.getID_EME_HAB())
                     .addParameter("ID_TAREA", tareaHabilidad.getID_TAREA())
                     .executeUpdate();

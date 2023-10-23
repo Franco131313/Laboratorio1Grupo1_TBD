@@ -19,10 +19,9 @@ public class HabilidadRepoImp implements HabilidadRepository {
     public void createHabilidad(HabilidadEntity habilidad)
     {
         try (Connection con = sql2o.open()) {
-            String sql = "INSERT INTO Habilidad (id, descrip)" +
-                    "VALUES (:ID_HABILIDAD,:descrip)";
+            String sql = "INSERT INTO Habilidad (descrip)" +
+                    "VALUES (:descrip)";
             con.createQuery(sql)
-                    .addParameter("ID_HABILIDAD", habilidad.getID_HABILIDAD())
                     .addParameter("descrip", habilidad.getDescrip())
                     .executeUpdate();
         }
