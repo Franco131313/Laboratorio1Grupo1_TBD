@@ -7,6 +7,11 @@
   
         <q-card-section>
           <q-input
+          v-model="nombre"
+          label="Nombre"
+          type="nombre"
+          />
+          <q-input
             v-model="correo"
             label="Correo"
             type="email"
@@ -62,6 +67,9 @@
   import axios from 'axios';
   
   export default {
+    created() {
+    this.getGeolocation();
+  },
     setup () {
     return {
       model: ref(null),
@@ -75,6 +83,7 @@
   },
     data() {
       return {
+        nombre: '',
         correo: '',
         contrasenia: '',
         //ubicacion: '',
@@ -82,46 +91,74 @@
         voluntarioSelected: false,
         coordinadorSelected: false,
         rol: '',
+        coordinates: {
+          lat: 0,
+          lng: 0
+      },
       };
     },
     methods: {
-      registrarUsuario() {
-        if (!this.correo || !this.contrasenia) {
-          alert('Por favor, completa todos los campos.');
-          return; // Detiene la función si los campos están vacíos
-        } else {
-          if (!this.correoValido){
-            alert('Escribe un correo con formato válido');
-            return;
-          //} else if(!this.ubicacion){
-            //alert('Por favor, permite recibir la ubicacioón');
-          } else {
-            const usuarioData = {
-              email: this.correo,
-              password: this.contrasenia,
-              rol: this.voluntarioSelected ? 'voluntario' : 'coordinador',
-            };
+      getGeolocation() {
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          this.coordinates.lat = position.coords.latitude;
+          this.coordinates.lng = position.coords.longitude;
+        });
+      } else {
+        alert("Geolocalización no es compatible en este navegador.");
+      }
+    },
+    registrarUsuario() {
+  if (!this.nombre || !this.correo || !this.contrasenia) {
+    alert('Por favor, completa todos los campos.');
+    return;
+  } else {
+    if (!this.correoValido) {
+      alert('Escribe un correo con formato válido');
+      return;
+    } else {
+      // Obtener las coordenadas de latitud y longitud
+      const latitud = this.coordinates.lat;
+      const longitud = this.coordinates.lng;
 
-            // Realiza una solicitud POST al backend para registrar al usuario
-            axios
-              .post('http://localhost:8080/api/usuarios/agregar-usuario', usuarioData)
-              .then((response) => {
-                // La solicitud fue exitosa, muestra un mensaje de éxito
-                alert('Usuario registrado exitosamente');
-                // También puedes redirigir al usuario a otra página, por ejemplo, la página de inicio de sesión
-                this.$router.push('/');
-              })
-              .catch((error) => {
-                // La solicitud al backend falló, muestra un mensaje de error
-                alert('Error al registrar al usuario. Inténtalo de nuevo.');
-                console.error(error); // Muestra información detallada del error en la consola
-              });
-          }
-        }
-        // Aquí puedes agregar la lógica para iniciar sesión
-        // Puedes hacer una petición a tu API para autenticar al usuario
-        // o realizar cualquier acción necesaria
-      },
+      const usuarioData = {
+        email: this.correo,
+        password: this.contrasenia,
+        rol: this.voluntarioSelected ? 'voluntario' : 'coordinador',
+      };
+
+      if (this.voluntarioSelected) {
+        const voluntarioData = {
+          nombre: this.nombre,
+          latitud: latitud, // Agregar latitud
+          longitud: longitud, // Agregar longitud
+        };
+
+        // Agrega voluntarioData a usuarioData
+        usuarioData.voluntarioData = voluntarioData;
+      }
+
+      // Realiza una solicitud POST al backend para registrar al usuario
+      axios
+        .post('http://localhost:8080/api/usuarios/agregar-usuario', usuarioData)
+        .then((response) => {
+          // La solicitud fue exitosa, muestra un mensaje de éxito
+          alert('Usuario registrado exitosamente');
+          // También puedes redirigir al usuario a otra página, por ejemplo, la página de inicio de sesión
+          this.$router.push('/');
+        })
+        .catch((error) => {
+          // La solicitud al backend falló, muestra un mensaje de error
+          alert('Error al registrar al usuario. Inténtalo de nuevo.');
+          console.error(error); // Muestra información detallada del error en la consola
+        });
+    }
+  }
+  // Aquí puedes agregar la lógica para iniciar sesión
+  // Puedes hacer una petición a tu API para autenticar al usuario
+  // o realizar cualquier acción necesaria
+},
+
       validarCorreo() {
         // Utiliza una expresión regular para validar el formato del correo
         const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;

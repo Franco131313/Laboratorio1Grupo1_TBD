@@ -21,11 +21,13 @@ public class VoluntarioRepoImp implements VoluntarioRepository{
         try (Connection con = sql2o.open()) {
             String LonStr = Float.toString(voluntario.getLongitud());
             String LatStr = Float.toString(voluntario.getLatitud());
-            String sql = "INSERT INTO voluntario (ID_USUARIO, nombre, ubi_vol)" +
-                    "VALUES (:ID_USUARIO, :nombre, ST_GeomFromText('POINT(" + LonStr + " " + LatStr + ")', 4326))";
+            String sql = "INSERT INTO voluntario (ID_USUARIO, nombre, latitud, longitd)" +
+                    "VALUES (:ID_USUARIO, :nombre, :latitud, :longitud )";
             con.createQuery(sql)
                     .addParameter("ID_USUARIO", voluntario.getID_USUARIO())
                     .addParameter("nombre", voluntario.getNombre())
+                    .addParameter("latitud", voluntario.getLatitud())
+                    .addParameter("longitud", voluntario.getLongitud())
                     .executeUpdate();
         }
     }
