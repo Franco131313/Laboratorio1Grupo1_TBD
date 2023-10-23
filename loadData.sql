@@ -1,14 +1,26 @@
-INSERT INTO voluntario (ID_VOLUNTARIO, ID_USUARIO, nombre, geom) VALUES 
-    (1, 1, 'Aexandra Valera', ST_GeomFromText('POINT(-70.6483 -33.4372)', 4326)),
-    (2, 2, 'Celestino Maestre',ST_GeomFromText('POINT(-70.6506 -33.4569)', 4326)),
-    (3, 3, 'Maria Angustias',ST_GeomFromText('POINT(-71.6165 -33.0472)', 4326)),
-    (4, 4, 'Clara Lucas',ST_GeomFromText('POINT(-71.6110 -33.0479)', 4326)),
-    (5, 5, 'Abdellah Cuellar',ST_GeomFromText('POINT(-73.0479 -36.8201)', 4326)),
-    (6, 6, 'Martin Cruz',ST_GeomFromText('POINT(-73.0486 -36.8294)', 4326)),
-    (7, 7, 'Wade Watts',ST_GeomFromText('POINT(-71.2536 -29.9027)', 4326)),
-    (8, 8, 'Genesis Felici',ST_GeomFromText('POINT(-71.2541 -29.9105)', 4326)),
-    (9, 9, 'Raul Dobbison',ST_GeomFromText('POINT(-71.5523 -33.0153)', 4326)),
-    (10, 10, 'Bruce Wearn',ST_GeomFromText('POINT(-71.5486 -33.0262)', 4326));
+INSERT INTO usuario (ID_USUARIO, email, password, rol) VALUES
+    (1, 'Aexandra.Valera@gmail.com', '123abc', 'coordinador'),
+    (2, 'Celestino.Maestre@gmail.com', '123abc', 'coordinador'),
+    (3, 'Maria.Angustias@gmail.com', '123abc', 'voluntario'),
+    (4, 'Clara.Lucas@gmail.com', '123abc', 'voluntario'),
+    (5, 'Abdellah.Cuellar@gmail.com', '123abc', 'voluntario'),
+    (6, 'Martin.Cruz@gmail.com', '123abc', 'voluntario'),
+    (7, 'Wade.Watts@gmail.com', '123abc', 'voluntario'),
+    (8, 'Genesis.Felici@gmail.com', '123abc', 'voluntario'),
+    (9, 'Raul.Dobbison@gmail.com', '123abc', 'voluntario'),
+    (10, 'Bruce.Wearn@gmail.com', '123abc', 'voluntario');
+
+INSERT INTO voluntario (ID_VOLUNTARIO, ID_USUARIO, nombre, latitud, longitud) VALUES 
+    (1, 1, 'Aexandra Valera', -70.6483, -33.4372),
+    (2, 2, 'Celestino Maestre', -70.6483, -33.4372),
+    (3, 3, 'Maria Angustias', -70.6483, -33.4372),
+    (4, 4, 'Clara Lucas', -70.6483, -33.4372),
+    (5, 5, 'Abdellah Cuellar', -70.6483, -33.4372),
+    (6, 6, 'Martin Cruz', -70.6483, -33.4372),
+    (7, 7, 'Wade Watts', -70.6483, -33.4372),
+    (8, 8, 'Genesis Felici', -70.6483, -33.4372),
+    (9, 9, 'Raul Dobbison', -70.6483, -33.4372),
+    (10, 10, 'Bruce Wearn', -70.6483, -33.4372);
 
 INSERT INTO habilidad (ID_HABILIDAD, descrip) VALUES
     (1, 'dictumst etiam faucibus cursus urna ut tellus nulla ut erat id mauris vulputate elementum nullam'),
@@ -47,16 +59,16 @@ INSERT INTO institucion (ID_INSTITUCION, nombre, descrip) VALUES
     (10, 'Voluntarios contra desastres', 'felis eu sapien cursus vestibulum proin eu mi nulla ac enim in tempor turpis nec euismod scelerisque quam turpis adipiscing lorem vitae mattis nibh ligula nec sem duis aliquam convallis nunc proin at turpis a pede posuere nonummy integer non');
 
 INSERT INTO emergencia (ID_EMERGENCIA, nombre, descrip, fecha_inicio, fecha_fin, ID_INSTITUCION, latitud_emer, longitud_emer) VALUES
-    (1, 'TERREMOTO', 'Descripcion de TERREMOTO', '2019-9-29', '2022-1-22', 1, ST_GeomFromText('POINT(-70.9167 -53.1500)', 4326)),
-    (2, 'TSUNAMI', 'Descripcion de TSUNAMI', '2019-12-23', '2022-4-4', 2, ST_GeomFromText('POINT(-67.6167 -54.9333)', 4326)),
-    (3, 'TERRORISMO', 'Descripcion de TERRORISMO', '2020-11-1', '2022-12-20', 3, ST_GeomFromText('POINT(-72.0030 -34.3881)', 4326)),
-    (4, 'HAMBRUNA', 'Descripcion de HAMBRUNA', '2020-8-30', '2022-10-13', 4, ST_GeomFromText('POINT(-72.3488 -37.4625)', 4326)),
-    (5, 'INCENDIO', 'Descripcion de INCENDIO', '2020-6-14', '2022-7-3', 5, ST_GeomFromText('POINT(-71.9440 -39.2812)', 4326)),
-    (6, 'PANDEMIA', 'Descripcion de PANDEMIA', '2020-2-13', '2022-1-8', 6, ST_GeomFromText('POINT(-71.2373 -32.4529)', 4326)),
-    (7, 'SAQUEOS', 'Descripcion de SAQUEOS', '2020-5-1', '2022-5-5', 7, ST_GeomFromText('POINT(-72.7000 -45.4000)', 4326)),
-    (8, 'EVACUACION FORZADA', 'Descripcion de EVACUACION FORZADA', '2021-5-2', '2021-10-29', 8, ST_GeomFromText('POINT(-72.4207 -35.3354)', 4326)),
-    (9, 'DELINCUENCIA','Descripcion de DELINCUENCIA' , '2020-4-12', '2021-8-28', 9, ST_GeomFromText('POINT(-70.8233 -27.0670)', 4326)),
-    (10, 'ESTALLIDO', 'Descripcion de ESTALLIDO', '2/5/2021', '2/10/2023', 10, ST_GeomFromText('POINT(-72.0030 -34.3881)', 4326));
+    (1, 'TERREMOTO', 'Descripcion de TERREMOTO', '2019-9-29', '2022-1-22', 1,  -74.6483, -31.4372),
+    (2, 'TSUNAMI', 'Descripcion de TSUNAMI', '2019-12-23', '2022-4-4', 2,  -74.6483, -31.4372),
+    (3, 'TERRORISMO', 'Descripcion de TERRORISMO', '2020-11-1', '2022-12-20', 3,  -74.6483, -31.4372),
+    (4, 'HAMBRUNA', 'Descripcion de HAMBRUNA', '2020-8-30', '2022-10-13', 4,  -74.6483, -31.4372),
+    (5, 'INCENDIO', 'Descripcion de INCENDIO', '2020-6-14', '2022-7-3', 5,  -74.6483, -31.4372),
+    (6, 'PANDEMIA', 'Descripcion de PANDEMIA', '2020-2-13', '2022-1-8', 6,  -74.6483, -31.4372),
+    (7, 'SAQUEOS', 'Descripcion de SAQUEOS', '2020-5-1', '2022-5-5', 7,  -74.6483, -31.4372),
+    (8, 'EVACUACION FORZADA', 'Descripcion de EVACUACION FORZADA', '2021-5-2', '2021-10-29', 8,  -74.6483, -31.4372),
+    (9, 'DELINCUENCIA','Descripcion de DELINCUENCIA' , '2020-4-12', '2021-8-28', 9,  -74.6483, -31.4372),
+    (10, 'ESTALLIDO', 'Descripcion de ESTALLIDO', '2/5/2021', '2/10/2023', 10,  -74.6483, -31.4372);
 
 INSERT INTO eme_habilidad (ID_EME_HAB, ID_EMERGENCIA, ID_HABILIDAD) VALUES
     (1, 1, 1),
@@ -110,18 +122,6 @@ INSERT INTO tarea_habilidad (ID_TARHAB, ID_EME_HAB, ID_TAREA) VALUES
     (8, 8, 8),
     (9, 9, 9),
     (10, 10, 10);
-
-INSERT INTO usuario (ID_USUARIO, email, password, rol) VALUES
-    (1, 'Aexandra.Valera@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'CORDINADOR'),
-    (2, 'Celestino.Maestre@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO'),
-    (3, 'Maria.Angustias@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO'),
-    (4, 'Clara.Lucas@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO'),
-    (5, 'Abdellah.Cuellar@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO'),
-    (6, 'Martin.Cruz@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO'),
-    (7, 'Wade.Watts@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO'),
-    (8, 'Genesis.Felici@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO'),
-    (9, 'Raul.Dobbison@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO'),
-    (10, 'Bruce.Wearn@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
 
 
 
