@@ -40,7 +40,7 @@ public class EmeHabilidadController {
 
 
     // UPDATE: Actualiza la habilidad de la relacion Emergencia-Habilidad
-    @PostMapping("/{id}")
+    @PostMapping("/actualizar-habilidad/{id}")
     public ResponseEntity<String> updateInst(@PathVariable Integer id,
                                              @RequestParam("Hab") String Hab)
     {
@@ -50,7 +50,7 @@ public class EmeHabilidadController {
     }
 
     // DELETE: Elimina una relacion
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/eliminar-relacion/{id}")
     public ResponseEntity<String> deleteEm(@PathVariable Integer id)
     {
         emeHabilidadRepository.deleteById(id);

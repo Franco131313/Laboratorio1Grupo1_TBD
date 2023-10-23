@@ -30,7 +30,7 @@ public class EstadoTareaController {
         return ResponseEntity.ok("Estado creado con exito");
     }
 
-    // READ: Listar todos los estados
+    // READ: Listar todos los estado tarea.
     @GetMapping("/lista-estadoTarea")
     public ResponseEntity<List<EstadoTareaEntity>> listar(Model model)
     {
@@ -38,8 +38,8 @@ public class EstadoTareaController {
     }
 
     // UPDATE: Actualiza la descripcion de la estado
-    @PutMapping("/{id}")
-    public ResponseEntity<String> updateDesc(@PathVariable Integer id,
+    @PutMapping("/actualizar-descripcion/{id}")
+    public ResponseEntity<String> update(@PathVariable Integer id,
                                              @RequestParam("descrip") String descrip)
     {
         estadoTareaRepository.update(id, descrip);
@@ -47,12 +47,12 @@ public class EstadoTareaController {
     }
 
 
-    // DELETE: Elimina un estado
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteEm(@PathVariable Integer id)
+    // DELETE: Elimina un estado-tarea por id
+    @DeleteMapping("/eliminar-estado-tarea/{id}")
+    public ResponseEntity<String> deleteById(@PathVariable Integer id)
     {
         estadoTareaRepository.deleteById(id);
-        return ResponseEntity.ok("Emergencia eliminada exitosamente");
+        return ResponseEntity.ok("Estado-tarea eliminado exitosamente");
     }
 
 }

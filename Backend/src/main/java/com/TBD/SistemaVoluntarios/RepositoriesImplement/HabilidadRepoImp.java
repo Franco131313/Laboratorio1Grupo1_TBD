@@ -44,7 +44,7 @@ public class HabilidadRepoImp implements HabilidadRepository {
     public HabilidadEntity findByID_HABILIDAD(Integer id) {
         try (Connection conn = sql2o.open()) {
             List <HabilidadEntity> habilidad = conn.createQuery("select * from habilidad where ID_HABILIDAD=:id")
-                    .addParameter("ID_HABILIDAD", id)
+                    .addParameter("id", id)
                     .executeAndFetch(HabilidadEntity.class);
             return habilidad.get(0);
         } catch (Exception e) {
@@ -59,8 +59,8 @@ public class HabilidadRepoImp implements HabilidadRepository {
         try (Connection con = sql2o.open()) {
             String sql = "UPDATE habilidad SET descrip = :nuevaDescrip WHERE ID_HABILIDAD = :id";
             con.createQuery(sql)
-                    .addParameter("descrip", nuevaDescrip)
-                    .addParameter("ID_HABILIDAD", id)
+                    .addParameter("nuevaDescrip", nuevaDescrip)
+                    .addParameter("id", id)
                     .executeUpdate();
         }
     }
@@ -72,7 +72,7 @@ public class HabilidadRepoImp implements HabilidadRepository {
         try (Connection con = sql2o.open()) {
             String sql = "DELETE FROM habilidad WHERE ID_HABILIDAD = :id";
             con.createQuery(sql)
-                    .addParameter("ID_HABILIDAD", id)
+                    .addParameter("id", id)
                     .executeUpdate();
         } catch (Exception e) {
             System.out.println(e.getMessage());

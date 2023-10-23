@@ -45,7 +45,7 @@ public class EmeHabilidadRepoImp implements EmeHabilidadRepository {
     public EmeHabilidadEntity findByID_EME_HAB(Integer id) {
         try (Connection conn = sql2o.open()) {
             List<EmeHabilidadEntity> emeHabilidadEntities = conn.createQuery("select * from eme_habilidad where ID_EME_HAB=:id")
-                    .addParameter("ID_EME_HAB", id)
+                    .addParameter("id", id)
                     .executeAndFetch(EmeHabilidadEntity.class);
             return emeHabilidadEntities.get(0);
         } catch (Exception e) {
@@ -60,8 +60,8 @@ public class EmeHabilidadRepoImp implements EmeHabilidadRepository {
         try (Connection con = sql2o.open()) {
             String sql = "UPDATE eme_habilidad SET ID_HABILIDAD = :nuevaHabilidad WHERE ID_EME_HAB = :id";
             con.createQuery(sql)
-                    .addParameter("ID_HABILIDAD", nuevaHabilidad)
-                    .addParameter("ID_EMERGENCIA", id)
+                    .addParameter("nuevaHabilidad", nuevaHabilidad)
+                    .addParameter("id", id)
                     .executeUpdate();
         }
     }
@@ -71,7 +71,7 @@ public class EmeHabilidadRepoImp implements EmeHabilidadRepository {
         try (Connection con = sql2o.open()) {
             String sql = "DELETE FROM eme_habilidad WHERE ID_EME_HAB = :id";
             con.createQuery(sql)
-                    .addParameter("ID_EME_HAB", id)
+                    .addParameter("id", id)
                     .executeUpdate();
         } catch (Exception e) {
             System.out.println(e.getMessage());

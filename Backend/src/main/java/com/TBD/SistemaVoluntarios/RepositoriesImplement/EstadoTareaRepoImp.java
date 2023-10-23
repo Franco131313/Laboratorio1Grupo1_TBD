@@ -44,7 +44,7 @@ public class EstadoTareaRepoImp implements  EstadoTareaRepository {
     public EstadoTareaEntity findByID_ESTADO(Integer id) {
         try (Connection conn = sql2o.open()) {
             List<EstadoTareaEntity> estadoTareaEntities = conn.createQuery("select * from estado_tarea where ID_ESTADO=:id")
-                    .addParameter("ID_ESTADO", id)
+                    .addParameter("id", id)
                     .executeAndFetch(EstadoTareaEntity.class);
             return estadoTareaEntities.get(0);
         } catch (Exception e) {
@@ -58,8 +58,8 @@ public class EstadoTareaRepoImp implements  EstadoTareaRepository {
         try (Connection con = sql2o.open()) {
             String sql = "UPDATE estado_tarea SET descripcion = :desc WHERE ID_ESTADO = :id";
             con.createQuery(sql)
-                    .addParameter("descripcion", desc)
-                    .addParameter("ID_ESTADO", id)
+                    .addParameter("desc", desc)
+                    .addParameter("id", id)
                     .executeUpdate();
         }
     }
@@ -70,7 +70,7 @@ public class EstadoTareaRepoImp implements  EstadoTareaRepository {
         try (Connection con = sql2o.open()) {
             String sql = "DELETE FROM estado_tarea WHERE ID_ESTADO = :id";
             con.createQuery(sql)
-                    .addParameter("ID_ESTADO", id)
+                    .addParameter("id", id)
                     .executeUpdate();
         } catch (Exception e) {
             System.out.println(e.getMessage());

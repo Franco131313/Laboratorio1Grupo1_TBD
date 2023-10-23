@@ -37,7 +37,7 @@ public class HabilidadController {
         return ResponseEntity.ok(habilidadRepository.findAll());
     }
     // UPDATE: Actualiza la descripcion de la habilidad
-    @PutMapping("/{id}")
+    @PutMapping("/actualizar-habilidad/{id}")
     public ResponseEntity<String> updateDesc(@PathVariable Integer id,
                                              @RequestParam("descrip") String descrip)
     {
@@ -46,11 +46,11 @@ public class HabilidadController {
     }
 
     // DELETE: Elimina una habilidad
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteEm(@PathVariable Integer id)
+    @DeleteMapping("/eliminar-habilidad/{id}")
+    public ResponseEntity<String> deleteById(@PathVariable Integer id)
     {
         habilidadRepository.deleteById(id);
-        return ResponseEntity.ok("Emergencia eliminada exitosamente");
+        return ResponseEntity.ok("Habilidad eliminada exitosamente");
     }
 
 }
