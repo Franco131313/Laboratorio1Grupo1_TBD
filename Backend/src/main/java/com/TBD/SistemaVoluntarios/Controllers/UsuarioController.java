@@ -22,7 +22,7 @@ public class UsuarioController {
     @PostMapping("/agregar-usuario")
     public ResponseEntity<String> nuevoUsuario(@RequestBody UsuarioEntity usuario){
         usuarioRepository.createUsuario(usuario);
-        return ResponseEntity.ok("Usuario registrado exitosamente con ID " + usuario.getID_USUARIO());
+        return ResponseEntity.ok("Usuario creado exitosamente");
     }
 
     // READ: Leer todos los usuarios

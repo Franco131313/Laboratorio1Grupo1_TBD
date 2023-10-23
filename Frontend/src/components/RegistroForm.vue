@@ -94,7 +94,8 @@
         coordinates: {
           lat: 0,
           lng: 0
-      },
+        },
+        idUsuario: null,
       };
     },
     methods: {
@@ -140,17 +141,48 @@
 
       // Realiza una solicitud POST al backend para registrar al usuario
       axios
-        .post('http://localhost:8080/api/usuarios/agregar-usuario', usuarioData)
+        .post('http://localhost:8082/api/usuarios/agregar-usuario', usuarioData)
         .then((response) => {
           // La solicitud fue exitosa, muestra un mensaje de éxito
-          alert('Usuario registrado exitosamente');
-          // También puedes redirigir al usuario a otra página, por ejemplo, la página de inicio de sesión
-          this.$router.push('/');
+          const get1 = "http://localhost:8082/api/usuarios/buscar?email=";
+          const get2 = this.correo;
+          const get3 = get1 + get2;
+          axios
+            .get(get3)
+            .then((response) => {
+              // Almacena el ID de usuario en la variable 'idUsuario'
+              this.idUsuario = response.data.id_USUARIO;
+
+              if (this.voluntarioSelected) { // Verifica si es voluntario
+                const voluntarioData = {
+                  nombre: this.nombre,
+                  latitud: latitud, // Agregar latitud
+                  longitud: longitud, // Agregar longitud
+                };
+                const link1 = "http://localhost:8082/api/voluntario/nuevo-voluntario?id=";
+                const link2 = this.idUsuario;
+                const link = link1 + link2;
+                // Realiza una solicitud POST para crear al voluntario
+                axios
+                  .post(link, voluntarioData)
+                  .then((voluntarioResponse) => {
+                    
+                  })
+                  .catch((voluntarioError) => {
+                    // La solicitud al backend para crear el voluntario falló
+                    alert('Error al registrar al voluntario. Inténtalo de nuevo.');
+                    console.error(voluntarioError);
+                  });
+              }
+            });
+            alert('Usuario registrado exitosamente');
+                    // También puedes redirigir al usuario a otra página
+                    this.$router.push('/');
         })
         .catch((error) => {
-          // La solicitud al backend falló, muestra un mensaje de error
+          // La solicitud al backend para registrar al usuario falló
           alert('Error al registrar al usuario. Inténtalo de nuevo.');
-          console.error(error); // Muestra información detallada del error en la consola
+          console.error(error);
         });
     }
   }
@@ -158,6 +190,7 @@
   // Puedes hacer una petición a tu API para autenticar al usuario
   // o realizar cualquier acción necesaria
 },
+
 
       validarCorreo() {
         // Utiliza una expresión regular para validar el formato del correo
