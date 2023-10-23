@@ -87,6 +87,7 @@ export default {
       .then((response) => {
         // La emergencia se creó con éxito
         console.log('Emergencia creada:', response.data);
+        alert('Emergencia Creada');
         // Redirige al usuario a la página deseada
         // Puedes utilizar Vue Router o la herramienta de enrutamiento que estés utilizando.
         this.$router.push('/coordinadores');

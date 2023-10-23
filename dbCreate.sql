@@ -1,7 +1,7 @@
 CREATE EXTENSION postgis;
 CREATE TABLE usuario(
 	ID_USUARIO SERIAL PRIMARY KEY,
-	email VARCHAR(100) UNIQUE,
+	email VARCHAR(100),
 	password VARCHAR(100),
 	rol VARCHAR(50)
 );
@@ -31,6 +31,7 @@ CREATE TABLE emergencia(
 	ID_INSTITUCION INTEGER,
 	latitud_emer FLOAT,
 	longitud_emer FLOAT,
+	estado VARCHAR(15),
     FOREIGN KEY (ID_INSTITUCION) REFERENCES institucion(ID_INSTITUCION)
 );
 

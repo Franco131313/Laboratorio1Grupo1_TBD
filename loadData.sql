@@ -23,16 +23,16 @@ INSERT INTO voluntario (ID_VOLUNTARIO, ID_USUARIO, nombre, latitud, longitud) VA
     (10, 10, 'Bruce Wearn', -70.6483, -33.4372);
 
 INSERT INTO habilidad (ID_HABILIDAD, descrip) VALUES
-    (1, 'dictumst etiam faucibus cursus urna ut tellus nulla ut erat id mauris vulputate elementum nullam'),
-    (2, 'nulla elit ac nulla sed vel enim sit amet nunc viverra dapibus nulla'),
-    (3, 'in quis justo maecenas rhoncus aliquam lacus morbi quis tortor id nulla'),
-    (4, 'magna vulputate luctus cum sociis natoque penatibus et magnis dis parturient'),
-    (5, 'consequat morbi a ipsum integer a nibh in quis justo maecenas rhoncus aliquam lacus morbi quis'),
-    (6, 'dui proin leo odio porttitor id consequat in consequat ut nulla sed accumsan felis ut'),
-    (7, 'eu interdum eu tincidunt in leo maecenas pulvinar lobortis est phasellus'),
-    (8, 'eu orci mauris lacinia sapien quis libero nullam sit amet turpis elementum ligula'),
-    (9, 'fringilla rhoncus mauris enim leo rhoncus sed vestibulum sit amet cursus id turpis integer'),
-    (10, 'enim blandit mi in porttitor pede justo eu massa donec dapibus duis at');
+    (1, 'Habilidad 1'),
+    (2, 'Habilidad 2'),
+    (3, 'Habilidad 3'),
+    (4, 'Habilidad 4'),
+    (5, 'Habilidad 5'),
+    (6, 'Habilidad 6'),
+    (7, 'Habilidad 7'),
+    (8, 'Habilidad 8'),
+    (9, 'Habilidad 9'),
+    (10, 'Habilidad 10');
 
 INSERT INTO vol_habilidad (ID_VOL_HAB, ID_VOLUNTARIO, ID_HABILIDAD) VALUES
     (1, 1, 1),
@@ -58,17 +58,17 @@ INSERT INTO institucion (ID_INSTITUCION, nombre, descrip) VALUES
     (9, 'Ayuda a todos', 'bibendum felis sed interdum venenatis turpis enim blandit mi in porttitor pede justo eu massa donec dapibus duis at velit eu est congue elementum in hac habitasse platea dictumst morbi vestibulum velit id pretium iaculis diam erat fermentum justo nec condimentum neque sapien placerat ante nulla justo'),
     (10, 'Voluntarios contra desastres', 'felis eu sapien cursus vestibulum proin eu mi nulla ac enim in tempor turpis nec euismod scelerisque quam turpis adipiscing lorem vitae mattis nibh ligula nec sem duis aliquam convallis nunc proin at turpis a pede posuere nonummy integer non');
 
-INSERT INTO emergencia (ID_EMERGENCIA, nombre, descrip, fecha_inicio, fecha_fin, ID_INSTITUCION, latitud_emer, longitud_emer) VALUES
-    (1, 'TERREMOTO', 'Descripcion de TERREMOTO', '2019-9-29', '2022-1-22', 1,  -74.6483, -31.4372),
-    (2, 'TSUNAMI', 'Descripcion de TSUNAMI', '2019-12-23', '2022-4-4', 2,  -74.6483, -31.4372),
-    (3, 'TERRORISMO', 'Descripcion de TERRORISMO', '2020-11-1', '2022-12-20', 3,  -74.6483, -31.4372),
-    (4, 'HAMBRUNA', 'Descripcion de HAMBRUNA', '2020-8-30', '2022-10-13', 4,  -74.6483, -31.4372),
-    (5, 'INCENDIO', 'Descripcion de INCENDIO', '2020-6-14', '2022-7-3', 5,  -74.6483, -31.4372),
-    (6, 'PANDEMIA', 'Descripcion de PANDEMIA', '2020-2-13', '2022-1-8', 6,  -74.6483, -31.4372),
-    (7, 'SAQUEOS', 'Descripcion de SAQUEOS', '2020-5-1', '2022-5-5', 7,  -74.6483, -31.4372),
-    (8, 'EVACUACION FORZADA', 'Descripcion de EVACUACION FORZADA', '2021-5-2', '2021-10-29', 8,  -74.6483, -31.4372),
-    (9, 'DELINCUENCIA','Descripcion de DELINCUENCIA' , '2020-4-12', '2021-8-28', 9,  -74.6483, -31.4372),
-    (10, 'ESTALLIDO', 'Descripcion de ESTALLIDO', '2/5/2021', '2/10/2023', 10,  -74.6483, -31.4372);
+INSERT INTO emergencia (ID_EMERGENCIA, nombre, descrip, fecha_inicio, fecha_fin, ID_INSTITUCION, latitud_emer, longitud_emer, estado) VALUES
+    (1, 'TERREMOTO', 'Descripcion de TERREMOTO', '2019-9-29', '2022-1-22', 1,  -74.6483, -31.4372, 'en curso'),
+    (2, 'TSUNAMI', 'Descripcion de TSUNAMI', '2019-12-23', '2022-4-4', 2,  -74.6483, -31.4372, 'en curso'),
+    (3, 'TERRORISMO', 'Descripcion de TERRORISMO', '2020-11-1', '2022-12-20', 3,  -74.6483, -31.4372, 'finalizada'),
+    (4, 'HAMBRUNA', 'Descripcion de HAMBRUNA', '2020-8-30', '2022-10-13', 4,  -74.6483, -31.4372, 'finalizada'),
+    (5, 'INCENDIO', 'Descripcion de INCENDIO', '2020-6-14', '2022-7-3', 5,  -74.6483, -31.4372, 'en curso'),
+    (6, 'PANDEMIA', 'Descripcion de PANDEMIA', '2020-2-13', '2022-1-8', 6,  -74.6483, -31.4372, 'finalizada'),
+    (7, 'SAQUEOS', 'Descripcion de SAQUEOS', '2020-5-1', '2022-5-5', 7,  -74.6483, -31.4372, 'finalizada'),
+    (8, 'EVACUACION FORZADA', 'Descripcion de EVACUACION FORZADA', '2021-5-2', '2021-10-29', 8,  -74.6483, -31.4372, 'en curso'),
+    (9, 'DELINCUENCIA','Descripcion de DELINCUENCIA' , '2020-4-12', '2021-8-28', 9,  -74.6483, -31.4372, 'finalizada'),
+    (10, 'ESTALLIDO', 'Descripcion de ESTALLIDO', '2/5/2021', '2/10/2023', 10,  -74.6483, -31.4372, 'en curso');
 
 INSERT INTO eme_habilidad (ID_EME_HAB, ID_EMERGENCIA, ID_HABILIDAD) VALUES
     (1, 1, 1),

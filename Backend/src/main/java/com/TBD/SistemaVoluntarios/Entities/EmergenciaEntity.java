@@ -24,4 +24,5 @@ public class EmergenciaEntity {
     private Integer ID_INSTITUCION;
     private Float latitud_emer;
     private Float longitud_emer;
+    private String estado;
 }
