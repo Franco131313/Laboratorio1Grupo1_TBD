@@ -1,6 +1,7 @@
 package com.TBD.SistemaVoluntarios.Controllers;
 
 import com.TBD.SistemaVoluntarios.Entities.HabilidadEntity;
+import com.TBD.SistemaVoluntarios.Entities.UsuarioEntity;
 import com.TBD.SistemaVoluntarios.Entities.VoluntarioEntity;
 import com.TBD.SistemaVoluntarios.Repositories.VoluntarioRepository;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +34,12 @@ public class VoluntarioController {
     {
         return ResponseEntity.ok(voluntarioRepository.findAll());
     }
+
+    @GetMapping("/buscar")
+    public ResponseEntity<VoluntarioEntity> buscarVoluntario(@RequestParam("nombre") String nombre) {
+        return ResponseEntity.ok(voluntarioRepository.findByNombre(nombre));
+    }
+
     // UPDATE: Actualiza la ubicacion de un voluntario...
     @PutMapping("/actualizar-ubicacion/{id}")
     public ResponseEntity<String> updateUbicacion(@PathVariable Integer id,

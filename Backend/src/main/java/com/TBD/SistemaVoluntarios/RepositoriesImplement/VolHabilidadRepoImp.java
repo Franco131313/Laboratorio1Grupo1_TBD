@@ -4,6 +4,7 @@ import com.TBD.SistemaVoluntarios.Entities.VolHabilidadEntity;
 import com.TBD.SistemaVoluntarios.Repositories.VolHabilidadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
@@ -16,14 +17,14 @@ public class VolHabilidadRepoImp implements VolHabilidadRepository {
 
     //CREATE: Crear un nuevo intermedio
     @Override
-    public void createVolHab(VolHabilidadEntity volHabilidad)
+    public void createVolHab(Integer idVol, Integer idHab)
     {
         try (Connection con = sql2o.open()) {
             String sql = "INSERT INTO vol_habilidad (ID_VOLUNTARIO, ID_HABILIDAD) " +
-                    "VALUES (:ID_VOLUNTARIO, :ID_HABILIDAD)";
+                    "VALUES (:idVol, :idHab)";
             con.createQuery(sql)
-                    .addParameter("ID_VOLUNTARIO", volHabilidad.getID_VOLUNTARIO())
-                    .addParameter("ID_HABILIDAD", volHabilidad.getID_HABILIDAD())
+                    .addParameter("idVol", idVol)
+                    .addParameter("idHab", idHab)
                     .executeUpdate();
         }
     }

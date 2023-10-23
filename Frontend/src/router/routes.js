@@ -36,7 +36,7 @@ const routes = [
     ],
   },
   {
-    path: '/coordinaDORES/emergencia-list',
+    path: '/coordinadores/emergencia-list',
     component: () => import('layouts/MainLayout.vue'),
     children: [
       {
@@ -46,7 +46,7 @@ const routes = [
     ],
   },
   {
-    path: '/coordinadores/emergencia-details/:id',
+    path: '/coordinadores/emergencia/:id',
     component: () => import('layouts/MainLayout.vue'),
     children: [
       {

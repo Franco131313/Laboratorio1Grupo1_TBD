@@ -1,5 +1,7 @@
 <template>
   <div>
+    <router-link to="/coordinadores">Volver a Panel de Control</router-link>
+    <q-card class="formulario fixed-center">
     <input v-model="filter" placeholder="Buscar" @input="filterEmergencias" />
     <table>
       <thead>
@@ -8,6 +10,8 @@
           <th>Descripción</th>
           <th>Fecha de Inicio</th>
           <th>Fecha de Finalización</th>
+          <th>Estado</th>
+          <th>Acciones</th> <!-- Nueva columna para acciones -->
         </tr>
       </thead>
       <tbody>
@@ -16,9 +20,15 @@
           <td>{{ emergencia.descrip }}</td>
           <td>{{ emergencia.fecha_inicio }}</td>
           <td>{{ emergencia.fecha_fin }}</td>
+          <td>{{ emergencia.estado }}</td>
+          <td>
+            <!-- Agregar un enlace que dirija a los detalles de la emergencia -->
+            <router-link :to="'/coordinadores/emergencia/' + emergencia.id_EMERGENCIA">Ver Detalles</router-link>
+          </td>
         </tr>
       </tbody>
     </table>
+  </q-card>
   </div>
 </template>
 
@@ -36,8 +46,7 @@ export default {
     filteredEmergencias() {
       return this.emergencias.filter((emergencia) => {
         return (
-          emergencia.nombre.toLowerCase().includes(this.filter.toLowerCase()) ||
-          emergencia.descrip.toLowerCase().includes(this.filter.toLowerCase())
+          emergencia.estado.toLowerCase().includes(this.filter.toLowerCase())
         );
       });
     },
@@ -67,3 +76,10 @@ export default {
   },
 };
 </script>
+
+<style lang="sass" scoped>
+.formulario
+  min-width: 300px
+  max-width: 900px
+  min-height: 300px
+</style>

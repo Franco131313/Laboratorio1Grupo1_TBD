@@ -1,6 +1,7 @@
 package com.TBD.SistemaVoluntarios.RepositoriesImplement;
 
 
+import com.TBD.SistemaVoluntarios.Entities.UsuarioEntity;
 import com.TBD.SistemaVoluntarios.Entities.VoluntarioEntity;
 import com.TBD.SistemaVoluntarios.Repositories.VoluntarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,19 @@ public class VoluntarioRepoImp implements VoluntarioRepository{
         try(Connection conn = sql2o.open()){
             return conn.createQuery("select * from voluntario order by ID_VOLUNTARIO")
                     .executeAndFetch(VoluntarioEntity.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public VoluntarioEntity findByNombre(String nombre) {
+        try (Connection conn = sql2o.open()) {
+            List <VoluntarioEntity> voluntario = conn.createQuery("select * from voluntario where nombre=:nombre")
+                    .addParameter("nombre", nombre)
+                    .executeAndFetch(VoluntarioEntity.class);
+            return voluntario.get(0);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;

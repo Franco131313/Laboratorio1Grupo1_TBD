@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface VolHabilidadRepository{
     //CREATE: Crear un nuevo intermedio
-    void createVolHab(VolHabilidadEntity volHabilidad);
+    void createVolHab(Integer idVol, Integer idHab);
 
     List<VolHabilidadEntity> findAll();
 

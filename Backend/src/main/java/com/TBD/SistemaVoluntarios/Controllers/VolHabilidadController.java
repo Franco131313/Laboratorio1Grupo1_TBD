@@ -22,9 +22,9 @@ public class VolHabilidadController {
 
     // CREATE: crear una nueva relacion voluntario-habilidad.
     @PostMapping("/nueva-vol-habilidad")
-    public ResponseEntity<String> crearVolHabilidad(@RequestBody VolHabilidadEntity volHabilidad)
+    public ResponseEntity<String> crearVolHabilidad(@RequestParam Integer idVol, @RequestParam Integer idHab)
     {
-        volHabilidadRepository.createVolHab(volHabilidad);
+        volHabilidadRepository.createVolHab(idVol, idHab);
         return ResponseEntity.ok("Relacion voluntario-habilidad creada con exito");
     }
 

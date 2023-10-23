@@ -22,7 +22,6 @@
             label="Contraseña"
             type="password"
           />
-          <q-select v-model="model" :options="optionsIns" label="Elegir institucion" />
           </q-card-section>
         <!-- q-card-section>
           <Mapa />
@@ -44,7 +43,12 @@
         <!-- Componente adicional: lista desplegable -->
         <div v-if="voluntarioSelected">
           <q-card-section>
-            <q-select v-model="model" :options="optionsHab" label="Elegir Habilidad" />
+            <q-input
+            v-model.number="model"
+            type="number"
+            filled
+            style="max-width: 200px"
+          />
           </q-card-section>
         </div>
         </q-card-section>
@@ -73,12 +77,6 @@
     setup () {
     return {
       model: ref(null),
-      optionsHab: [
-        'Habilidad 1', 'Habilidad 2', 'Habilidad 3', 'Habilidad 4', 'Habilidad 5'
-      ],
-      optionsIns: [
-        'Institucion 1', 'Institucion 2', 'Institucion 3'
-      ]
     }
   },
     data() {
@@ -96,6 +94,7 @@
           lng: 0
         },
         idUsuario: null,
+        idVoluntario: null,
       };
     },
     methods: {
@@ -166,7 +165,24 @@
                 axios
                   .post(link, voluntarioData)
                   .then((voluntarioResponse) => {
-                    
+                    const get4 = "http://localhost:8082/api/voluntario/buscar?nombre=";
+                    const get5 = this.nombre;
+                    const get6 = get4 + get5;
+                    axios
+                      .get(get6)
+                      .then((response) => {
+                        this.idVoluntario = response.data.id_VOLUNTARIO;
+                        const enlace1 = "http://localhost:8082/api/volHabilidad/nueva-vol-habilidad?idVol=";
+                    const enlace2 = "&idHab=";
+                    const enlace3 =  enlace1 + this.idUsuario + enlace2 + this.model;
+                    axios
+                      .post(enlace3)
+                      .then((response) => {
+                      alert('Usuario registrado exitosamente');
+                    // También puedes redirigir al usuario a otra página
+                    this.$router.push('/');
+                    });
+                      });
                   })
                   .catch((voluntarioError) => {
                     // La solicitud al backend para crear el voluntario falló
@@ -175,9 +191,7 @@
                   });
               }
             });
-            alert('Usuario registrado exitosamente');
-                    // También puedes redirigir al usuario a otra página
-                    this.$router.push('/');
+            
         })
         .catch((error) => {
           // La solicitud al backend para registrar al usuario falló

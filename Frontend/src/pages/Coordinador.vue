@@ -17,6 +17,7 @@
             <q-btn flat rounded color="primary" class="text-h5" @click="redirectToEmergenciaList">Ver lista de emergencias</q-btn>
           </q-card-actions>
         </q-card>
+        <router-link to="/">Cerrar Sesion</router-link>
       </q-page-container>
     </q-page>
   </template>
