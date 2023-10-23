@@ -18,10 +18,6 @@ public class VoluntarioRepoImp implements VoluntarioRepository{
     @Override
     public void agregarVoluntario(VoluntarioEntity voluntario, Integer id) {
         try (Connection con = sql2o.open()) {
-            System.out.println(voluntario.getID_USUARIO());
-            System.out.println(voluntario.getNombre());
-            String LonStr = Float.toString(voluntario.getLongitud());
-            String LatStr = Float.toString(voluntario.getLatitud());
             String sql = "INSERT INTO voluntario (id_usuario, nombre, latitud, longitud)" +
                     "VALUES (:id, :nombre, :latitud, :longitud )";
             con.createQuery(sql)
