@@ -72,7 +72,6 @@ export default {
         // y asociar el ID correspondiente a cada una
         this.instituciones = response.data.map((institucion) => ({
           label: institucion.nombre,
-          value: institucion.ID_INSTITUCION,
         }));
       })
       .catch((error) => {
@@ -80,22 +79,25 @@ export default {
       });
   },
   methods: {
-    submitForm() {
-      // Realiza la solicitud POST al controlador para crear la emergencia
-      axios.post('http://localhost:8082/api/emergencia/nueva-emergencia', this.formData)
-        .then((response) => {
-          // La emergencia se creó con éxito
-          console.log('Emergencia creada:', response.data);
-          // Redirige al usuario a la página deseada
-          // Puedes utilizar Vue Router o la herramienta de enrutamiento que estés utilizando.
-          this.$router.push('/coordinatores');
-        })
-        .catch((error) => {
-          // Ocurrió un error al crear la emergencia
-          console.error('Error al crear la emergencia:', error);
-        });
-    },
+  submitForm() {
+    this.formData.ID_INSTITUCION = this.$refs.mySelect.getEmittingOptionValue(this.formData.ID_INSTITUCION);
+    console.log(this.formData.ID_INSTITUCION);
+    // Realiza la solicitud POST al controlador para crear la emergencia
+    axios.post('http://localhost:8082/api/emergencia/nueva-emergencia', this.formData)
+      .then((response) => {
+        // La emergencia se creó con éxito
+        console.log('Emergencia creada:', response.data);
+        // Redirige al usuario a la página deseada
+        // Puedes utilizar Vue Router o la herramienta de enrutamiento que estés utilizando.
+        this.$router.push('/coordinadores');
+      })
+      .catch((error) => {
+        // Ocurrió un error al crear la emergencia
+        console.error('Error al crear la emergencia:', error);
+      });
   },
+},
+
 };
 </script>
 
