@@ -86,38 +86,36 @@ public class UsuarioRepoImp implements UsuarioRepository{
     }
     //UPDATE: Actualiza el Email de un usuario
     @Override
-    public void updateEmail(Integer id, String nuevoEmail) {
+    public void updateEmail(Integer id, String newEmail) {
         try (Connection con = sql2o.open()) {
-            String sql = "UPDATE usuario SET email = :nuevoEmail WHERE ID_USUARIO = :id";
+            String sql = "UPDATE usuario SET email = :newEmail WHERE ID_USUARIO = :id";
             con.createQuery(sql)
-                    .addParameter("email", nuevoEmail)
-                    .addParameter("ID_USUARIO", id)
+                    .addParameter("newEmail", newEmail)
+                    .addParameter("id", id)
                     .executeUpdate();
         }
     }
 
     //UPDATE: Actualiza el Password de un usuario
     @Override
-    public void updatePass(Integer id, String nuevoPass) {
+    public void updatePass(Integer id, String newPass) {
         try (Connection con = sql2o.open()) {
-            String sql = "UPDATE usuario SET password = :nuevoPass WHERE ID_USUARIO = :id";
+            String sql = "UPDATE usuario SET password = :newPass WHERE ID_USUARIO = :id";
             con.createQuery(sql)
-                    .addParameter("password", nuevoPass)
-                    .addParameter("ID_USUARIO", id)
+                    .addParameter("newPass", newPass)
+                    .addParameter("id", id)
                     .executeUpdate();
         }
     }
 
-    // DELETE: elimina un ranking por ID
+    // DELETE: elimina un usuario por ID
     @Override
     public void deleteById(Integer id) {
         try (Connection con = sql2o.open()) {
-            String sql = "DELETE FROM usuarios WHERE ID_USUARIO = :id";
+            String sql = "DELETE FROM usuario WHERE ID_USUARIO = :id";
             con.createQuery(sql)
-                    .addParameter("ID_USUARIO", id)
+                    .addParameter("id", id)
                     .executeUpdate();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
         }
     }
 }

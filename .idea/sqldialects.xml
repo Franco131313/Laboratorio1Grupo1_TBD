@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/Backend/src/main/java/com/TBD/SistemaVoluntarios/RepositoriesImplement/EmeHabilidadRepoImp.java" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/Backend/src/main/java/com/TBD/SistemaVoluntarios/RepositoriesImplement/EmergenciaRepoImp.java" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/Backend/src/main/java/com/TBD/SistemaVoluntarios/RepositoriesImplement/EstadoTareaRepoImp.java" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/Backend/src/main/java/com/TBD/SistemaVoluntarios/RepositoriesImplement/HabilidadRepoImp.java" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/Backend/src/main/java/com/TBD/SistemaVoluntarios/RepositoriesImplement/InstitucionRepoImp.java" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/Backend/src/main/java/com/TBD/SistemaVoluntarios/RepositoriesImplement/RankingRepoImp.java" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/Backend/src/main/java/com/TBD/SistemaVoluntarios/RepositoriesImplement/TareaHabilidadRepoImp.java" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/Backend/src/main/java/com/TBD/SistemaVoluntarios/RepositoriesImplement/TareaRepoImp.java" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/Backend/src/main/java/com/TBD/SistemaVoluntarios/RepositoriesImplement/UsuarioRepoImp.java" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/Backend/src/main/java/com/TBD/SistemaVoluntarios/RepositoriesImplement/VolHabilidadRepoImp.java" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/Backend/src/main/java/com/TBD/SistemaVoluntarios/RepositoriesImplement/VoluntarioRepoImp.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/dbCreate.sql" dialect="PostgreSQL" />
   </component>
 </project>
