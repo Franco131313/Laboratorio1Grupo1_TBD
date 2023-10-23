@@ -17,6 +17,9 @@ public interface EstadoTareaRepository{
     //READ: Buscar a un estado a partir de su ID
     EstadoTareaEntity findByID_ESTADO(Integer id);
 
+    // UPDATE: Actualizar descripcion para estado
+    void update(Integer id, String desc);
+
     // DELETE: elimina un estado por ID
     void deleteById(Integer id);
 }

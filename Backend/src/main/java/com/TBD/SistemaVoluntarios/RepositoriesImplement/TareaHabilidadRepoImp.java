@@ -58,6 +58,17 @@ public class TareaHabilidadRepoImp implements TareaHabilidadRepository {
             return null;
         }
     }
+    // UPDATE: Actualizar descripcion para estado
+    @Override
+    public void update(Integer id, Integer nuevaHab) {
+        try (Connection con = sql2o.open()) {
+            String sql = "UPDATE tarea_habilidad SET ID_HABILIDAD = :desc WHERE ID_TARHAB = :id";
+            con.createQuery(sql)
+                    .addParameter("ID_HABILIDAD", nuevaHab)
+                    .addParameter("ID_TARHAB", id)
+                    .executeUpdate();
+        }
+    }
 
     // DELETE: elimina una conexion por ID
     @Override

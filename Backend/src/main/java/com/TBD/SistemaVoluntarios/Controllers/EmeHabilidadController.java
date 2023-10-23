@@ -31,21 +31,22 @@ public class EmeHabilidadController {
         return ResponseEntity.ok("Relacion emergencia-habilidad creada con exito");
     }
 
+    //READ: Lista todas las relaciones emergencia-habilidad
     @GetMapping("/lista-emeHabilidad")
     public ResponseEntity<List<EmeHabilidadEntity>> listar(Model model)
     {
         return ResponseEntity.ok(emeHabilidadRepository.findAll());
     }
-    
 
-    // UPDATE: Actualiza la habilidad de la emergencia
+
+    // UPDATE: Actualiza la habilidad de la relacion Emergencia-Habilidad
     @PostMapping("/{id}")
     public ResponseEntity<String> updateInst(@PathVariable Integer id,
                                              @RequestParam("Hab") String Hab)
     {
         Integer id_hab = Integer.parseInt(Hab);
         emeHabilidadRepository.update(id, id_hab);
-        return ResponseEntity.ok("Institucion actualizada con exito");
+        return ResponseEntity.ok("Habilidad actualizada con exito");
     }
 
     // DELETE: Elimina una relacion
@@ -53,6 +54,6 @@ public class EmeHabilidadController {
     public ResponseEntity<String> deleteEm(@PathVariable Integer id)
     {
         emeHabilidadRepository.deleteById(id);
-        return ResponseEntity.ok("Emergencia eliminada exitosamente");
+        return ResponseEntity.ok("Relacion emergencia-habilidad eliminada exitosamente");
     }
 }

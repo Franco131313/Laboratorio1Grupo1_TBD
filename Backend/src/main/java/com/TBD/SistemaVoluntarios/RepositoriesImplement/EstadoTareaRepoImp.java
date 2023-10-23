@@ -53,6 +53,17 @@ public class EstadoTareaRepoImp implements  EstadoTareaRepository {
             return null;
         }
     }
+    // UPDATE: Actualizar descripcion para estado
+    @Override
+    public void update(Integer id, String desc) {
+        try (Connection con = sql2o.open()) {
+            String sql = "UPDATE estado_tarea SET descripcion = :desc WHERE ID_ESTADO = :id";
+            con.createQuery(sql)
+                    .addParameter("descripcion", desc)
+                    .addParameter("ID_ESTADO", id)
+                    .executeUpdate();
+        }
+    }
 
     // DELETE: elimina un estado por ID
     @Override

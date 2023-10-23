@@ -1,14 +1,13 @@
 package com.TBD.SistemaVoluntarios.Controllers;
 
+import com.TBD.SistemaVoluntarios.Entities.EmergenciaEntity;
 import com.TBD.SistemaVoluntarios.Entities.EstadoTareaEntity;
 import com.TBD.SistemaVoluntarios.Repositories.EstadoTareaRepository;
 import com.TBD.SistemaVoluntarios.RepositoriesImplement.EstadoTareaRepoImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +22,37 @@ public class EstadoTareaController {
         this.estadoTareaRepository = EstadoTareaRepository;
     }
 
+    // CREATE: crear un nuevo estado.
+    @PostMapping("/nueva-estado-tarea")
+    public ResponseEntity<String> crearEstadoTarea(@RequestBody EstadoTareaEntity estadoTarea)
+    {
+        estadoTareaRepository.createEstadoTarea(estadoTarea);
+        return ResponseEntity.ok("Estado creado con exito");
+    }
+
+    // READ: Listar todos los estados
     @GetMapping("/lista-estadoTarea")
     public ResponseEntity<List<EstadoTareaEntity>> listar(Model model)
     {
         return ResponseEntity.ok(estadoTareaRepository.findAll());
     }
+
+    // UPDATE: Actualiza la descripcion de la estado
+    @PutMapping("/{id}")
+    public ResponseEntity<String> updateDesc(@PathVariable Integer id,
+                                             @RequestParam("descrip") String descrip)
+    {
+        estadoTareaRepository.update(id, descrip);
+        return ResponseEntity.ok("Descripcion actualizada con exito");
+    }
+
+
+    // DELETE: Elimina un estado
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteEm(@PathVariable Integer id)
+    {
+        estadoTareaRepository.deleteById(id);
+        return ResponseEntity.ok("Emergencia eliminada exitosamente");
+    }
+
 }

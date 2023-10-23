@@ -1,12 +1,11 @@
 package com.TBD.SistemaVoluntarios.Controllers;
 
+import com.TBD.SistemaVoluntarios.Entities.EmeHabilidadEntity;
 import com.TBD.SistemaVoluntarios.Entities.TareaHabilidadEntity;
 import com.TBD.SistemaVoluntarios.Repositories.TareaHabilidadRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +19,38 @@ public class TareaHabilidadController {
         this.tareaHabilidadRepository = tareaHabilidadRepository;
     }
 
-    @GetMapping("/lista-tareaHabilidad")
+    // CREATE: crear una nueva relacion.
+    @PostMapping("/nueva-tar-habilidad")
+    public ResponseEntity<String> crearTareaHabilidad(@RequestBody TareaHabilidadEntity tareaHabilidad)
+    {
+        tareaHabilidadRepository.createTareaHabilidad(tareaHabilidad);
+        return ResponseEntity.ok("Relacion tarea-habilidad creada con exito");
+    }
+
+    // READ: Listar todas las relaciones
+    @GetMapping("/lista-tarea-habilidad")
     public ResponseEntity<List<TareaHabilidadEntity>> listar(Model model)
     {
         return ResponseEntity.ok(tareaHabilidadRepository.findAll());
     }
+
+
+    // UPDATE: Actualiza la habilidad de la relacion
+    @PostMapping("/{id}")
+    public ResponseEntity<String> update(@PathVariable Integer id,
+                                             @RequestParam("Hab") String Hab)
+    {
+        Integer id_hab = Integer.parseInt(Hab);
+        tareaHabilidadRepository.update(id, id_hab);
+        return ResponseEntity.ok("Habilidad actualizada con exito");
+    }
+
+    // DELETE: Elimina una relacion
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable Integer id)
+    {
+        tareaHabilidadRepository.deleteById(id);
+        return ResponseEntity.ok("Relacion tarea-habilidad eliminada exitosamente");
+    }
+
 }

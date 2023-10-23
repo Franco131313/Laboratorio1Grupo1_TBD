@@ -90,8 +90,8 @@ public class UsuarioRepoImp implements UsuarioRepository{
         try (Connection con = sql2o.open()) {
             String sql = "UPDATE usuario SET email = :nuevoEmail WHERE ID_USUARIO = :id";
             con.createQuery(sql)
-                    .addParameter("nuevoEmail", nuevoEmail)
-                    .addParameter("id", id)
+                    .addParameter("email", nuevoEmail)
+                    .addParameter("ID_USUARIO", id)
                     .executeUpdate();
         }
     }
@@ -102,8 +102,8 @@ public class UsuarioRepoImp implements UsuarioRepository{
         try (Connection con = sql2o.open()) {
             String sql = "UPDATE usuario SET password = :nuevoPass WHERE ID_USUARIO = :id";
             con.createQuery(sql)
-                    .addParameter("nuevoPass", nuevoPass)
-                    .addParameter("id", id)
+                    .addParameter("password", nuevoPass)
+                    .addParameter("ID_USUARIO", id)
                     .executeUpdate();
         }
     }
@@ -114,7 +114,7 @@ public class UsuarioRepoImp implements UsuarioRepository{
         try (Connection con = sql2o.open()) {
             String sql = "DELETE FROM usuarios WHERE ID_USUARIO = :id";
             con.createQuery(sql)
-                    .addParameter("id", id)
+                    .addParameter("ID_USUARIO", id)
                     .executeUpdate();
         } catch (Exception e) {
             System.out.println(e.getMessage());

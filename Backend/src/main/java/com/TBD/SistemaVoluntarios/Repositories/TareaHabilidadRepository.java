@@ -17,6 +17,9 @@ public interface TareaHabilidadRepository{
     //READ: Buscar a una conexion a partir de su ID
     TareaHabilidadEntity findByID_TARHAB(Integer id);
 
+    // UPDATE: Actualizar descripcion para estado
+    void update(Integer id, Integer nuevaHab);
+
     // DELETE: elimina una conexion por ID
     void deleteById(Integer id);
 }

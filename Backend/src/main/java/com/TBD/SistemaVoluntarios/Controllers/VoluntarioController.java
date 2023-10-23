@@ -20,7 +20,7 @@ public class VoluntarioController {
     }
 
     // CREATE: agregar un voluntario.
-    @PostMapping("/nueva-voluntario")
+    @PostMapping("/nuevo-voluntario")
     public ResponseEntity<String> agregarVoluntario(@RequestBody VoluntarioEntity voluntario)
     {
         voluntarioRepository.agregarVoluntario(voluntario);
