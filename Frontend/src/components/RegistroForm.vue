@@ -17,29 +17,7 @@
             label="Contraseña"
             type="password"
           />
-          </q-card-section>
-          <q-card-section>
-          <q-btn-dropdown color="primary" label="Elegir institucion">
-            <q-list>
-              <q-item clickable v-close-popup>
-                <q-item-section>
-                  <q-item-label>Institucion 1</q-item-label>
-                </q-item-section>
-              </q-item>
-    
-              <q-item clickable v-close-popup>
-                <q-item-section>
-                  <q-item-label>Institucion 2</q-item-label>
-                </q-item-section>
-              </q-item>
-    
-              <q-item clickable v-close-popup>
-                <q-item-section>
-                  <q-item-label>Institucion 3</q-item-label>
-                </q-item-section>
-              </q-item>
-            </q-list>
-          </q-btn-dropdown>
+          <q-select v-model="model" :options="optionsIns" label="Elegir institucion" />
           </q-card-section>
         <!-- q-card-section>
           <Mapa />
@@ -60,27 +38,9 @@
     
         <!-- Componente adicional: lista desplegable -->
         <div v-if="voluntarioSelected">
-          <q-btn-dropdown color="primary" label="Elegir habilidad">
-            <q-list>
-              <q-item clickable v-close-popup @click="onItemClick">
-                <q-item-section>
-                  <q-item-label>Habilidad 1</q-item-label>
-                </q-item-section>
-              </q-item>
-    
-              <q-item clickable v-close-popup @click="onItemClick">
-                <q-item-section>
-                  <q-item-label>Habilidad 2</q-item-label>
-                </q-item-section>
-              </q-item>
-    
-              <q-item clickable v-close-popup @click="onItemClick">
-                <q-item-section>
-                  <q-item-label>Habilidad 3</q-item-label>
-                </q-item-section>
-              </q-item>
-            </q-list>
-          </q-btn-dropdown>
+          <q-card-section>
+            <q-select v-model="model" :options="optionsHab" label="Elegir Habilidad" />
+          </q-card-section>
         </div>
         </q-card-section>
         <q-card-actions align="right">
@@ -102,6 +62,17 @@
   import axios from 'axios';
   
   export default {
+    setup () {
+    return {
+      model: ref(null),
+      optionsHab: [
+        'Habilidad 1', 'Habilidad 2', 'Habilidad 3', 'Habilidad 4', 'Habilidad 5'
+      ],
+      optionsIns: [
+        'Institucion 1', 'Institucion 2', 'Institucion 3'
+      ]
+    }
+  },
     data() {
       return {
         correo: '',

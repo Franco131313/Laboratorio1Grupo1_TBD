@@ -42,6 +42,15 @@ public class VoluntarioRepoImp implements VoluntarioRepository{
         }
     }
 
+    @Override
+    public VoluntarioEntity findByID_USUARIO(Integer id){
+        return null;
+    }
+
+    @Override
+    public VoluntarioEntity findByNombre(String nombre){
+        return null;
+    }
 
     //READ: Buscar a un voluntario a partir de su ID.
     @Override
