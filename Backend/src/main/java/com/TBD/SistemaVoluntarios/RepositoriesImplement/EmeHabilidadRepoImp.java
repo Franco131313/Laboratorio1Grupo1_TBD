@@ -55,6 +55,17 @@ public class EmeHabilidadRepoImp implements EmeHabilidadRepository {
         }
     }
 
+    // UPDATE: Actualizar habilidad para emergencia
+    @Override
+    public void update(Integer id, Integer nuevaHabilidad) {
+        try (Connection con = sql2o.open()) {
+            String sql = "UPDATE eme_habilidad SET ID_HABILIDAD = :nuevaHabilidad WHERE ID_EME_HAB = :id";
+            con.createQuery(sql)
+                    .addParameter("ID_HABILIDAD", nuevaHabilidad)
+                    .addParameter("ID_EMERGENCIA", id)
+                    .executeUpdate();
+        }
+    }
     // DELETE: elimina una conexion por ID
     @Override
     public void deleteById(Integer id) {
