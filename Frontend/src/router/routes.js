@@ -1,7 +1,4 @@
 
-import Registro from 'pages/Registro.vue';
-import InicioSesion from 'pages/InicioSesion.vue';
-
 const routes = [
   {
     path: '/',
@@ -24,7 +21,40 @@ const routes = [
       { path: '', component: () => import('pages/InicioSesion.vue') },
     ]
   },
-
+  {
+    path: '/coordinadores',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/Coordinador.vue') },
+    ]
+  },
+  {
+   path: '/coordinadores/emergencia-create',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+    { path: '', component: () => import('pages/EmergenciaCreate.vue'),},
+    ],
+  },
+  {
+    path: '/coordinaDORES/emergencia-list',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      {
+        path: '',
+        component: () => import('pages/EmergenciaList.vue'),
+      },
+    ],
+  },
+  {
+    path: '/coordinadores/emergencia-details/:id',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      {
+        path: '',
+        component: () => import('pages/EmergenciaDetails.vue'),
+      },
+    ],
+  },  
   // Always leave this as last one,
   // but you can also remove it
   {

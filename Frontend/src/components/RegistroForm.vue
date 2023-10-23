@@ -7,10 +7,6 @@
   
         <q-card-section>
           <q-input
-            v-model="nombre"
-            label="Nombre"
-          />
-          <q-input
             v-model="correo"
             label="Correo"
             type="email"
@@ -21,10 +17,72 @@
             label="Contraseña"
             type="password"
           />
+          </q-card-section>
+          <q-card-section>
+          <q-btn-dropdown color="primary" label="Elegir institucion">
+            <q-list>
+              <q-item clickable v-close-popup>
+                <q-item-section>
+                  <q-item-label>Institucion 1</q-item-label>
+                </q-item-section>
+              </q-item>
+    
+              <q-item clickable v-close-popup>
+                <q-item-section>
+                  <q-item-label>Institucion 2</q-item-label>
+                </q-item-section>
+              </q-item>
+    
+              <q-item clickable v-close-popup>
+                <q-item-section>
+                  <q-item-label>Institucion 3</q-item-label>
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </q-btn-dropdown>
+          </q-card-section>
+        <!-- q-card-section>
           <Mapa />
-          <!-- Agrega más campos según tus necesidades -->
+        </!-->
+        <q-card-section>
+          <q-checkbox
+          v-model="voluntarioSelected"
+          label="Registrarse como voluntario"
+          @input="onCheckboxChange('voluntario')"
+        />
+        
+        <!-- Casilla de verificación para registrarse como coordinador -->
+        <q-checkbox
+          v-model="coordinadorSelected"
+          label="Registrarse como coordinador"
+          @input="onCheckboxChange('coordinador')"
+        />
+    
+        <!-- Componente adicional: lista desplegable -->
+        <div v-if="voluntarioSelected">
+          <q-btn-dropdown color="primary" label="Elegir habilidad">
+            <q-list>
+              <q-item clickable v-close-popup @click="onItemClick">
+                <q-item-section>
+                  <q-item-label>Habilidad 1</q-item-label>
+                </q-item-section>
+              </q-item>
+    
+              <q-item clickable v-close-popup @click="onItemClick">
+                <q-item-section>
+                  <q-item-label>Habilidad 2</q-item-label>
+                </q-item-section>
+              </q-item>
+    
+              <q-item clickable v-close-popup @click="onItemClick">
+                <q-item-section>
+                  <q-item-label>Habilidad 3</q-item-label>
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </q-btn-dropdown>
+        </div>
         </q-card-section>
-  
         <q-card-actions align="right">
           <q-btn
             color="primary"
@@ -41,37 +99,73 @@
   
   <script>
   import { ref } from 'vue'
-  import Mapa from 'components/Mapa.vue';
+  import axios from 'axios';
   
   export default {
     data() {
       return {
-        nombre: '',
         correo: '',
         contrasenia: '',
-        ubicacion: '',
-        correoValido: true // Variable para almacenar si el correo es válido
-        // Agrega más variables de datos según sea necesario
+        //ubicacion: '',
+        correoValido: true, // Variable para almacenar si el correo es válido
+        voluntarioSelected: false,
+        coordinadorSelected: false,
+        rol: '',
       };
     },
     methods: {
       registrarUsuario() {
-        if (this.correoValido) {
-          // Aquí puedes agregar la lógica para registrar al usuario
-          // Puedes hacer una petición a tu API para guardar los datos en la base de datos
-          // o realizar cualquier acción necesaria
+        if (!this.correo || !this.contrasenia) {
+          alert('Por favor, completa todos los campos.');
+          return; // Detiene la función si los campos están vacíos
         } else {
-          // El correo no es válido, muestra un mensaje de error o realiza alguna acción
+          if (!this.correoValido){
+            alert('Escribe un correo con formato válido');
+            return;
+          //} else if(!this.ubicacion){
+            //alert('Por favor, permite recibir la ubicacioón');
+          } else {
+            const usuarioData = {
+              email: this.correo,
+              pass: this.contrasenia,
+              rol: this.voluntarioSelected ? 'voluntario' : 'coordinador',
+            };
+
+            // Realiza una solicitud POST al backend para registrar al usuario
+            axios
+              .post('http://localhost:8080/api/usuarios/agregar-usuario', usuarioData)
+              .then((response) => {
+                // La solicitud fue exitosa, muestra un mensaje de éxito
+                alert('Usuario registrado exitosamente');
+                // También puedes redirigir al usuario a otra página, por ejemplo, la página de inicio de sesión
+                this.$router.push('/login');
+              })
+              .catch((error) => {
+                // La solicitud al backend falló, muestra un mensaje de error
+                alert('Error al registrar al usuario. Inténtalo de nuevo.');
+                console.error(error); // Muestra información detallada del error en la consola
+              });
+          }
         }
+        // Aquí puedes agregar la lógica para iniciar sesión
+        // Puedes hacer una petición a tu API para autenticar al usuario
+        // o realizar cualquier acción necesaria
       },
       validarCorreo() {
         // Utiliza una expresión regular para validar el formato del correo
         const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
         this.correoValido = emailPattern.test(this.correo);
       },
-    },
-    components: {
-      Mapa, // Registra el componente de formulario para su uso en la plantilla
+      onItemClick() {
+        console.log('Clicked on an Item');
+      },
+      onCheckboxChange(selected) {
+        if (selected === 'voluntario') {
+          this.coordinadorSelected = false; // Desmarca la casilla de coordinador
+        } else if (selected === 'coordinador') {
+          this.voluntarioSelected = false; // Desmarca la casilla de voluntario
+        }
+      },
     },
   };
   </script>
