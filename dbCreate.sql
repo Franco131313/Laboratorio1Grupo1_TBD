@@ -12,7 +12,8 @@ CREATE TABLE voluntario(
 	ID_VOLUNTARIO INTEGER PRIMARY KEY,
 	ID_USUARIO INTEGER,
 	nombre VARCHAR(100),
-	ubi_vol GEOMETRY(Point, 4326)
+	latitud FLOAT,
+	longitud FLOAT
 );
 
 
@@ -40,7 +41,8 @@ CREATE TABLE emergencia(
 	fecha_inicio DATE,
 	fecha_fin DATE,
 	ID_INSTITUCION NUMERIC(4),
-	ubi_emer GEOMETRY(Point, 4326)
+	latitud_emer FLOAT,
+	longitud_emer FLOAT
 );
 
 
@@ -85,7 +87,7 @@ CREATE TABLE tarea_habilidad(
 
 CREATE TABLE estado_tarea(
 	ID_ESTADO NUMERIC(2) PRIMARY KEY,
-	descrip VARCHAR(20)
+	descripcion VARCHAR(20)
 );
 
 
