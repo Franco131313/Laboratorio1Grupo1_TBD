@@ -19,8 +19,6 @@ public class EmergenciaRepoImp implements EmergenciaRepository{
     public void createEmergencia(EmergenciaEntity emergencia)
     {
         try (Connection con = sql2o.open()) {
-            String LonStr = Float.toString(emergencia.getLongitud_emer());
-            String LatStr = Float.toString(emergencia.getLatitud_emer());
             String sql = "INSERT INTO Emergencia (nombre, descrip, fecha_inicio, fecha_fin, ID_INSTITUCION, latitud_emer, longitud_emer, estado)" +
                     "VALUES (:nombre, :descrip, :fecha_inicio, :fecha_fin, :ID_INSTITUCION, :latitud_emer, :longitud_emer, 'en curso')";
             con.createQuery(sql)
@@ -67,8 +65,8 @@ public class EmergenciaRepoImp implements EmergenciaRepository{
         try (Connection con = sql2o.open()) {
             String sql = "UPDATE emergencia SET descrip = :nuevaDescrip WHERE ID_EMERGENCIA = :id";
             con.createQuery(sql)
-                    .addParameter("descrip", nuevaDescrip)
-                    .addParameter("ID_EMERGENCIA", id)
+                    .addParameter("nuevaDescrip", nuevaDescrip)
+                    .addParameter("id", id)
                     .executeUpdate();
         }
     }
@@ -79,8 +77,8 @@ public class EmergenciaRepoImp implements EmergenciaRepository{
         try (Connection con = sql2o.open()) {
             String sql = "UPDATE emergencia SET ID_INSTITUCION = :nuevaInstitucion WHERE ID_EMERGENCIA = :id";
             con.createQuery(sql)
-                    .addParameter("ID_INSTITUCION", nuevaInstitucion)
-                    .addParameter("ID_EMERGENCIA", id)
+                    .addParameter("nuevaInstitucion", nuevaInstitucion)
+                    .addParameter("id", id)
                     .executeUpdate();
         }
     }
@@ -91,7 +89,7 @@ public class EmergenciaRepoImp implements EmergenciaRepository{
         try (Connection con = sql2o.open()) {
             String sql = "DELETE FROM emergencia WHERE ID_EMERGENCIA = :id";
             con.createQuery(sql)
-                    .addParameter("ID_EMERGENCIA", id)
+                    .addParameter("id", id)
                     .executeUpdate();
         } catch (Exception e) {
             System.out.println(e.getMessage());

@@ -26,6 +26,7 @@ public class EmergenciaController {
     @PostMapping("/nueva-emergencia")
     public ResponseEntity<String> crearEmergencia(@RequestBody EmergenciaEntity emergencia)
     {
+        // 2023-10-23T12:33:35.927+00:00 tipo fecha_inicio
         emergenciaRepository.createEmergencia(emergencia);
         return ResponseEntity.ok("Emergencia creada con exito");
     }
@@ -38,7 +39,7 @@ public class EmergenciaController {
     }
 
     // UPDATE: Actualiza la descripcion de la emergencia
-    @PutMapping("/{id}")
+    @PutMapping("/actualizar-descripcion/{id}")
     public ResponseEntity<String> updateDesc(@PathVariable Integer id,
                                              @RequestParam("descrip") String descrip)
     {
@@ -47,7 +48,7 @@ public class EmergenciaController {
     }
 
     // UPDATE: Actualiza la institucion de la emergencia
-    @PostMapping("/{id}")
+    @PutMapping ("/actualizar-institucion/{id}")
     public ResponseEntity<String> updateInst(@PathVariable Integer id,
                                              @RequestParam("Inst") String Inst)
     {
@@ -57,7 +58,7 @@ public class EmergenciaController {
     }
 
     // DELETE: Elimina una emergencia
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/eliminar-emergencia/{id}")
     public ResponseEntity<String> deleteEm(@PathVariable Integer id)
     {
         emergenciaRepository.deleteById(id);
