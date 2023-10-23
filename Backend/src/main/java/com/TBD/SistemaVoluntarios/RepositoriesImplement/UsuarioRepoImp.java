@@ -23,7 +23,7 @@ public class UsuarioRepoImp implements UsuarioRepository{
     {
         try (Connection con = sql2o.open()) {
             String sql = "INSERT INTO usuario (email, password, rol) " +
-                    "VALUES (:usuario, :password, :rol)";
+                    "VALUES (:email, :password, :rol)";
             con.createQuery(sql)
                     .addParameter("email", usuario.getEmail())
                     .addParameter("password", usuario.getPassword())

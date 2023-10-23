@@ -9,5 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface TareaHabilidadRepository{
+    //CREATE: Crear una nueva conexion
+    void createTareaHabilidad(TareaHabilidadEntity tareaHabilidad);
+
     List<TareaHabilidadEntity> findAll();
+
+    //READ: Buscar a una conexion a partir de su ID
+    TareaHabilidadEntity findByID_TARHAB(Integer id);
+
+    // DELETE: elimina una conexion por ID
+    void deleteById(Integer id);
 }

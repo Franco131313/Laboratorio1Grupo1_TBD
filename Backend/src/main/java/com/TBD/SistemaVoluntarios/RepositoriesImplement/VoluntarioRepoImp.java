@@ -34,7 +34,7 @@ public class VoluntarioRepoImp implements VoluntarioRepository{
     @Override
     public List<VoluntarioEntity> findAll() {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("select * from voluntario order by id")
+            return conn.createQuery("select * from voluntario order by ID_VOLUNTARIO")
                     .executeAndFetch(VoluntarioEntity.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -42,15 +42,6 @@ public class VoluntarioRepoImp implements VoluntarioRepository{
         }
     }
 
-    @Override
-    public VoluntarioEntity findByNombre(String nombre) {
-        return null;
-    }
-
-    @Override
-    public VoluntarioEntity findByID_USUARIO(Integer id) {
-        return null;
-    }
 
     //READ: Buscar a un voluntario a partir de su ID.
     @Override
@@ -72,9 +63,9 @@ public class VoluntarioRepoImp implements VoluntarioRepository{
         try (Connection con = sql2o.open()) {
             String sql = "UPDATE voluntario SET ubi_vol = ST_GeomFromText('POINT(:nuevaLongitud :nuevaLatitud)', 4326) WHERE ID_VOLUNTARIO = :id";
             con.createQuery(sql)
-                    .addParameter("nuevaLongitud", nuevaLongitud)
-                    .addParameter("nuevaLatitud", nuevaLatitud)
-                    .addParameter("idVoluntario", id)
+                    .addParameter("longitud", nuevaLongitud)
+                    .addParameter("latitud", nuevaLatitud)
+                    .addParameter("ID_VOLUNTARIO", id)
                     .executeUpdate();
         }
     }
@@ -86,7 +77,7 @@ public class VoluntarioRepoImp implements VoluntarioRepository{
         try (Connection con = sql2o.open()) {
             String sql = "DELETE FROM voluntario WHERE ID_VOLUNTARIO = :id";
             con.createQuery(sql)
-                    .addParameter("id", id)
+                    .addParameter("ID_VOLUNTARIO", id)
                     .executeUpdate();
         } catch (Exception e) {
             System.out.println(e.getMessage());

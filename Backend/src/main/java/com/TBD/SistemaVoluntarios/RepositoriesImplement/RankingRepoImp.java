@@ -24,7 +24,7 @@ public class RankingRepoImp implements RankingRepository {
     {
         try (Connection con = sql2o.open()) {
             String sql = "INSERT INTO ranking (ID_VOLUNTARIO, ID_TAREA, puntaje, flg_invitado, flg_participa) " +
-                    "VALUES (:voluntarioId, :tareaId, :puntaje, :flgInvitado, :flgParticipa)";
+                    "VALUES (:ID_VOLUNTARIO, :ID_TAREA, :puntaje, :flg_Invitado, :flg_Participa)";
             con.createQuery(sql)
                     .addParameter("ID_VOLUNTARIO", ranking.getID_VOLUNTARIO())
                     .addParameter("ID_TAREA", ranking.getID_TAREA())
@@ -50,7 +50,7 @@ public class RankingRepoImp implements RankingRepository {
         try (Connection con = sql2o.open()) {
             String sql = "SELECT * FROM ranking WHERE ID_RANKING = :id";
             return con.createQuery(sql)
-                    .addParameter("id", id)
+                    .addParameter("ID_RANKING", id)
                     .executeAndFetchFirst(RankingEntity.class);
         }
     }
@@ -61,8 +61,8 @@ public class RankingRepoImp implements RankingRepository {
         try (Connection con = sql2o.open()) {
             String sql = "UPDATE ranking SET puntaje = :nuevoPuntaje WHERE ID_RANKING = :id";
             con.createQuery(sql)
-                    .addParameter("nuevoPuntaje", nuevoPuntaje)
-                    .addParameter("id", id)
+                    .addParameter("puntaje", nuevoPuntaje)
+                    .addParameter("ID_RANKING", id)
                     .executeUpdate();
         }
     }
@@ -73,7 +73,7 @@ public class RankingRepoImp implements RankingRepository {
         try (Connection con = sql2o.open()) {
             String sql = "DELETE FROM ranking WHERE ID_RANKING = :id";
             con.createQuery(sql)
-                    .addParameter("id", id)
+                    .addParameter("ID_RANKING", id)
                     .executeUpdate();
         }
     }

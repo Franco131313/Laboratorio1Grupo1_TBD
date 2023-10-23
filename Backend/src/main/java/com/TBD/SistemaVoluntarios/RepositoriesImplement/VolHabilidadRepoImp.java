@@ -20,10 +20,10 @@ public class VolHabilidadRepoImp implements VolHabilidadRepository {
     {
         try (Connection con = sql2o.open()) {
             String sql = "INSERT INTO vol_habilidad (ID_VOLUNTARIO, ID_HABILIDAD) " +
-                    "VALUES (:id_voluntario, :id_habilidad)";
+                    "VALUES (:ID_VOLUNTARIO, :ID_HABILIDAD)";
             con.createQuery(sql)
-                    .addParameter("voluntario", volHabilidad.getID_VOLUNTARIO())
-                    .addParameter("habilidad", volHabilidad.getID_HABILIDAD())
+                    .addParameter("ID_VOLUNTARIO", volHabilidad.getID_VOLUNTARIO())
+                    .addParameter("ID_HABILIDAD", volHabilidad.getID_HABILIDAD())
                     .executeUpdate();
         }
     }
@@ -32,7 +32,7 @@ public class VolHabilidadRepoImp implements VolHabilidadRepository {
     @Override
     public List<VolHabilidadEntity> findAll() {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("select * from Vol_habilidad order by id")
+            return conn.createQuery("select * from vol_habilidad order by ID_VOL_HAB")
                     .executeAndFetch(VolHabilidadEntity.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -73,8 +73,8 @@ public class VolHabilidadRepoImp implements VolHabilidadRepository {
         try (Connection con = sql2o.open()) {
             String sql = "UPDATE vol_habilidad SET ID_VOLUNTARIO = :nuevoIdVol WHERE ID_VOL_HAB = :id";
             con.createQuery(sql)
-                    .addParameter("nuevoIdVol", nuevoIdVol)
-                    .addParameter("id", id)
+                    .addParameter("ID_VOLUNTARIO", nuevoIdVol)
+                    .addParameter("ID_VOL_HAB", id)
                     .executeUpdate();
         }
     }
@@ -84,8 +84,8 @@ public class VolHabilidadRepoImp implements VolHabilidadRepository {
         try (Connection con = sql2o.open()) {
             String sql = "UPDATE vol_hablidad SET ID_HABILIDAD = :nuevoIdHab WHERE ID_HABILIDAD = :id";
             con.createQuery(sql)
-                    .addParameter("nuevoIDHab", nuevoIDHab)
-                    .addParameter("id", id)
+                    .addParameter("ID_HABILIDAD", nuevoIDHab)
+                    .addParameter("ID_VOL_HAB", id)
                     .executeUpdate();
         }
     }
@@ -96,7 +96,7 @@ public class VolHabilidadRepoImp implements VolHabilidadRepository {
         try (Connection con = sql2o.open()) {
             String sql = "DELETE FROM vol_habilidad WHERE ID_VOL_HAB = :id";
             con.createQuery(sql)
-                    .addParameter("id", id)
+                    .addParameter("ID_VOL_HAB", id)
                     .executeUpdate();
         } catch (Exception e) {
             System.out.println(e.getMessage());

@@ -61,7 +61,7 @@ public class EmeHabilidadRepoImp implements EmeHabilidadRepository {
         try (Connection con = sql2o.open()) {
             String sql = "DELETE FROM eme_habilidad WHERE ID_EME_HAB = :id";
             con.createQuery(sql)
-                    .addParameter("id", id)
+                    .addParameter("ID_EME_HAB", id)
                     .executeUpdate();
         } catch (Exception e) {
             System.out.println(e.getMessage());

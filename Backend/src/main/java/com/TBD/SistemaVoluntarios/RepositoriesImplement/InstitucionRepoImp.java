@@ -20,7 +20,7 @@ public class InstitucionRepoImp implements InstitucionRepository {
     {
         try (Connection con = sql2o.open()) {
             String sql = "INSERT INTO institucion (nombre, descrip)" +
-                    "VALUES (:id,:descrip)";
+                    "VALUES (:nombre,:descrip)";
             con.createQuery(sql)
                     .addParameter("nombre", institucion.getNombre())
                     .addParameter("descrip", institucion.getDescrip())
@@ -32,7 +32,7 @@ public class InstitucionRepoImp implements InstitucionRepository {
     @Override
     public List<InstitucionEntity> findAll() {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("select * from institucion order by id")
+            return conn.createQuery("select * from institucion order by ID_INSTITUCION")
                     .executeAndFetch(InstitucionEntity.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -60,8 +60,8 @@ public class InstitucionRepoImp implements InstitucionRepository {
         try (Connection con = sql2o.open()) {
             String sql = "UPDATE institucion SET descrip = :nuevaDescrip WHERE ID_INSTITUCION = :id";
             con.createQuery(sql)
-                    .addParameter("nuevaDescrip", nuevaDescrip)
-                    .addParameter("id", id)
+                    .addParameter("descrip", nuevaDescrip)
+                    .addParameter("ID_INSTITUCION", id)
                     .executeUpdate();
         }
     }
@@ -73,7 +73,7 @@ public class InstitucionRepoImp implements InstitucionRepository {
         try (Connection con = sql2o.open()) {
             String sql = "DELETE FROM institucion WHERE ID_INSTITUCION = :id";
             con.createQuery(sql)
-                    .addParameter("id", id)
+                    .addParameter("ID_INSTITUCION", id)
                     .executeUpdate();
         } catch (Exception e) {
             System.out.println(e.getMessage());

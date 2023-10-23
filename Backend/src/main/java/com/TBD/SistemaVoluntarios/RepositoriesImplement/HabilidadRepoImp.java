@@ -20,9 +20,9 @@ public class HabilidadRepoImp implements HabilidadRepository {
     {
         try (Connection con = sql2o.open()) {
             String sql = "INSERT INTO Habilidad (id, descrip)" +
-                    "VALUES (:id,:descrip)";
+                    "VALUES (:ID_HABILIDAD,:descrip)";
             con.createQuery(sql)
-                    .addParameter("id_habilidad", habilidad.getID_HABILIDAD())
+                    .addParameter("ID_HABILIDAD", habilidad.getID_HABILIDAD())
                     .addParameter("descrip", habilidad.getDescrip())
                     .executeUpdate();
         }
@@ -32,7 +32,7 @@ public class HabilidadRepoImp implements HabilidadRepository {
     @Override
     public List<HabilidadEntity> findAll() {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("select * from Habilidad order by id")
+            return conn.createQuery("select * from habilidad order by ID_HABILIDAD")
                     .executeAndFetch(HabilidadEntity.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -60,8 +60,8 @@ public class HabilidadRepoImp implements HabilidadRepository {
         try (Connection con = sql2o.open()) {
             String sql = "UPDATE habilidad SET descrip = :nuevaDescrip WHERE ID_HABILIDAD = :id";
             con.createQuery(sql)
-                    .addParameter("nuevaDescrip", nuevaDescrip)
-                    .addParameter("id", id)
+                    .addParameter("descrip", nuevaDescrip)
+                    .addParameter("ID_HABILIDAD", id)
                     .executeUpdate();
         }
     }
@@ -73,7 +73,7 @@ public class HabilidadRepoImp implements HabilidadRepository {
         try (Connection con = sql2o.open()) {
             String sql = "DELETE FROM habilidad WHERE ID_HABILIDAD = :id";
             con.createQuery(sql)
-                    .addParameter("id", id)
+                    .addParameter("ID_HABILIDAD", id)
                     .executeUpdate();
         } catch (Exception e) {
             System.out.println(e.getMessage());
