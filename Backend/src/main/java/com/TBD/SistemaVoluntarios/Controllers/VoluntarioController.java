@@ -19,7 +19,7 @@ public class VoluntarioController {
         this.voluntarioRepository = voluntarioRepository;
     }
 
-    // CREATE: agregar un voluntario.
+    // CREATE: agregar un voluntario....
     @PostMapping("/nuevo-voluntario")
     public ResponseEntity<String> agregarVoluntario(@RequestBody VoluntarioEntity voluntario, @RequestParam Integer id)
     {
@@ -27,14 +27,14 @@ public class VoluntarioController {
         return ResponseEntity.ok("Voluntario agregado con exito");
     }
 
-    // READ: Listar todos los voluntarios
+    // READ: Listar todos los voluntarios...
     @GetMapping("/lista-voluntario")
     public ResponseEntity<List<VoluntarioEntity>> listar(Model model)
     {
         return ResponseEntity.ok(voluntarioRepository.findAll());
     }
-    // UPDATE: Actualiza la ubicacion de un voluntario.
-    @PutMapping("/{id}")
+    // UPDATE: Actualiza la ubicacion de un voluntario...
+    @PutMapping("/actualizar-ubicacion/{id}")
     public ResponseEntity<String> updateUbicacion(@PathVariable Integer id,
                                                   @RequestParam("nuevaLongitud") float nuevaLongitud,
                                                   @RequestParam("nuevaLatitud") float nuevaLatitud)
@@ -43,8 +43,8 @@ public class VoluntarioController {
         return ResponseEntity.ok("Ubicacion actualizada con exito");
     }
 
-    // DELETE: Elimina una habilidad
-    @DeleteMapping("/{id}")
+    // DELETE: Elimina un voluntario.
+    @DeleteMapping("/eliminar-voluntario/{id}")
     public ResponseEntity<String> deleteById(@PathVariable Integer id)
     {
         voluntarioRepository.deleteById(id);

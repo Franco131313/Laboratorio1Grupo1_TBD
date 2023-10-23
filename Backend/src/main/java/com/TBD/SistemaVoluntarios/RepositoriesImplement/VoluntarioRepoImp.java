@@ -59,13 +59,24 @@ public class VoluntarioRepoImp implements VoluntarioRepository{
     //UPDATE: Actualiza la ubicacion de un voluntario.
     @Override
     public void updateUbicacion(Integer id, float nuevaLongitud, float nuevaLatitud) {
-        try (Connection con = sql2o.open()) {
-            String sql = "UPDATE voluntario SET ubi_vol = ST_GeomFromText('POINT(:nuevaLongitud :nuevaLatitud)', 4326) WHERE ID_VOLUNTARIO = :id";
-            con.createQuery(sql)
-                    .addParameter("longitud", nuevaLongitud)
-                    .addParameter("latitud", nuevaLatitud)
-                    .addParameter("ID_VOLUNTARIO", id)
+        try (Connection con = sql2o.beginTransaction()) {
+            // Realizar la actualización de la longitud
+            con.createQuery("UPDATE voluntario SET longitud = :nuevaLongitud WHERE ID_VOLUNTARIO = :id")
+                    .addParameter("nuevaLongitud", nuevaLongitud)
+                    .addParameter("id", id)
                     .executeUpdate();
+
+            // Realizar la actualización de la latitud
+            con.createQuery("UPDATE voluntario SET latitud = :nuevaLatitud WHERE ID_VOLUNTARIO = :id")
+                    .addParameter("nuevaLatitud", nuevaLatitud)
+                    .addParameter("id", id)
+                    .executeUpdate();
+
+            // Confirmar la el cambio.
+            con.commit();
+        } catch (Exception e) {
+            // Realizar un rollback en caso de excepción
+            System.out.println(e.getMessage());
         }
     }
 
@@ -76,7 +87,7 @@ public class VoluntarioRepoImp implements VoluntarioRepository{
         try (Connection con = sql2o.open()) {
             String sql = "DELETE FROM voluntario WHERE ID_VOLUNTARIO = :id";
             con.createQuery(sql)
-                    .addParameter("ID_VOLUNTARIO", id)
+                    .addParameter("id", id)
                     .executeUpdate();
         } catch (Exception e) {
             System.out.println(e.getMessage());
