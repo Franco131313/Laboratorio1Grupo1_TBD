@@ -14,6 +14,7 @@ public class VoluntarioEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ID_VOLUNTARIO;
 
+    @Column(name="ID_USUARIO")
     private Integer ID_USUARIO;
     private String nombre;
 

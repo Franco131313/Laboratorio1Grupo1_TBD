@@ -61,8 +61,8 @@ public class UsuarioRepoImp implements UsuarioRepository{
     @Override
     public UsuarioEntity findByID_USUARIO(Integer id) {
         try (Connection conn = sql2o.open()) {
-            List<UsuarioEntity> usuarios = conn.createQuery("select * from Usuario where ID_USUARIO=:id")
-                    .addParameter("ID_USUARIO", id)
+            List<UsuarioEntity> usuarios = conn.createQuery("select * from usuario where ID_USUARIO=:id")
+                    .addParameter("id", id)
                     .executeAndFetch(UsuarioEntity.class);
             return usuarios.get(0);
         } catch (Exception e) {

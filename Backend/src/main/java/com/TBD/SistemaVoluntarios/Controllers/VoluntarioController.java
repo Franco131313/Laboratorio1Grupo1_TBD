@@ -21,9 +21,9 @@ public class VoluntarioController {
 
     // CREATE: agregar un voluntario.
     @PostMapping("/nuevo-voluntario")
-    public ResponseEntity<String> agregarVoluntario(@RequestBody VoluntarioEntity voluntario)
+    public ResponseEntity<String> agregarVoluntario(@RequestBody VoluntarioEntity voluntario, @RequestParam Integer id)
     {
-        voluntarioRepository.agregarVoluntario(voluntario);
+        voluntarioRepository.agregarVoluntario(voluntario, id);
         return ResponseEntity.ok("Voluntario agregado con exito");
     }
 

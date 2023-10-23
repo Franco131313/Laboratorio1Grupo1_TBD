@@ -44,6 +44,12 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioRepository.findByEmail(email));
     }
 
+    //READ: Buscar un usuario por su id
+    @GetMapping("/buscar-id")
+    public ResponseEntity<UsuarioEntity> buscarUsuarioId(@RequestParam("id") Integer id) {
+        return ResponseEntity.ok(usuarioRepository.findByID_USUARIO(id));
+    }
+
     //UPDATE: Actualizar EMAIL
     @PutMapping("/{id}")
     public ResponseEntity<String> updateEmail(@PathVariable Integer id,

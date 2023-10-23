@@ -16,21 +16,23 @@ public class VoluntarioRepoImp implements VoluntarioRepository{
 
     //CREATE: Agregar un voluntario
     @Override
-    public void agregarVoluntario(VoluntarioEntity voluntario)
-    {
+    public void agregarVoluntario(VoluntarioEntity voluntario, Integer id) {
         try (Connection con = sql2o.open()) {
+            System.out.println(voluntario.getID_USUARIO());
+            System.out.println(voluntario.getNombre());
             String LonStr = Float.toString(voluntario.getLongitud());
             String LatStr = Float.toString(voluntario.getLatitud());
-            String sql = "INSERT INTO voluntario (ID_USUARIO, nombre, latitud, longitd)" +
-                    "VALUES (:ID_USUARIO, :nombre, :latitud, :longitud )";
+            String sql = "INSERT INTO voluntario (id_usuario, nombre, latitud, longitud)" +
+                    "VALUES (:id, :nombre, :latitud, :longitud )";
             con.createQuery(sql)
-                    .addParameter("ID_USUARIO", voluntario.getID_USUARIO())
+                    .addParameter("id", id) // Agrega el ID_USUARIO aquí
                     .addParameter("nombre", voluntario.getNombre())
                     .addParameter("latitud", voluntario.getLatitud())
-                    .addParameter("longitud", voluntario.getLongitud())
+                    .addParameter("longitud", voluntario.getLongitud()) // Arregla el nombre del parámetro aquí
                     .executeUpdate();
         }
     }
+
 
     //READ: Buscar todos los voluntarios.
     @Override

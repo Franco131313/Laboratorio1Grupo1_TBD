@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface VoluntarioRepository {
     //CREATE: Agregar un voluntario
-    void agregarVoluntario(VoluntarioEntity voluntario);
+    void agregarVoluntario(VoluntarioEntity voluntario, Integer id);
 
     List<VoluntarioEntity> findAll();
 
