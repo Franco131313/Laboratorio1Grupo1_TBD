@@ -60,8 +60,8 @@ public class InstitucionRepoImp implements InstitucionRepository {
         try (Connection con = sql2o.open()) {
             String sql = "UPDATE institucion SET descrip = :nuevaDescrip WHERE ID_INSTITUCION = :id";
             con.createQuery(sql)
-                    .addParameter("descrip", nuevaDescrip)
-                    .addParameter("ID_INSTITUCION", id)
+                    .addParameter("nuevaDescrip", nuevaDescrip)
+                    .addParameter("id", id)
                     .executeUpdate();
         }
     }
@@ -73,7 +73,7 @@ public class InstitucionRepoImp implements InstitucionRepository {
         try (Connection con = sql2o.open()) {
             String sql = "DELETE FROM institucion WHERE ID_INSTITUCION = :id";
             con.createQuery(sql)
-                    .addParameter("ID_INSTITUCION", id)
+                    .addParameter("id", id)
                     .executeUpdate();
         } catch (Exception e) {
             System.out.println(e.getMessage());

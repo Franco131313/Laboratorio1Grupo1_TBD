@@ -22,7 +22,7 @@ public class InstitucionController {
         this.institucionRepository = InstitucionRepository;
     }
 
-    // CREATE: crear una nueva institucion.
+    // CREATE: crear una nueva institucion...
     @PostMapping("/nueva-institucion")
     public ResponseEntity<String> createInstitucion(@RequestBody InstitucionEntity institucion)
     {
@@ -30,23 +30,23 @@ public class InstitucionController {
         return ResponseEntity.ok("Institucion creada con exito");
     }
 
-    // READ: Listar todas las instituciones.
+    // READ: Listar todas las instituciones...
     @GetMapping("/lista-institucion")
     public ResponseEntity<List<InstitucionEntity>> listar(Model model)
     {
         return ResponseEntity.ok(institucionRepository.findAll());
     }
-    // UPDATE: Actualiza la descripcion de una institucion.
-    @PutMapping("/{id}")
+    // UPDATE: Actualiza la descripcion de una institucion...
+    @PutMapping("/actualizar-descripcion/{id}")
     public ResponseEntity<String> updateDesc(@PathVariable Integer id,
-                                             @RequestParam("descrip") String descrip)
+                                             @RequestParam("nuevaDescrip") String nuevaDescrip)
     {
-        institucionRepository.updateDescrip(id, descrip);
+        institucionRepository.updateDescrip(id, nuevaDescrip);
         return ResponseEntity.ok("Descripcion de la institucion actualizada con exito");
     }
 
-    // DELETE: Elimina una institucion.
-    @DeleteMapping("/{id}")
+    // DELETE: Elimina una institucion...
+    @DeleteMapping("/eliminar-institucion/{id}")
     public ResponseEntity<String> deleteEm(@PathVariable Integer id)
     {
         institucionRepository.deleteById(id);
