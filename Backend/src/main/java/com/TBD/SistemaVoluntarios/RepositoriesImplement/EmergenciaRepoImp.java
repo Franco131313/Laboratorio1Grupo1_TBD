@@ -21,7 +21,7 @@ public class EmergenciaRepoImp implements EmergenciaRepository{
         try (Connection con = sql2o.open()) {
             String LonStr = Float.toString(emergencia.getLongitud_emer());
             String LatStr = Float.toString(emergencia.getLatitud_emer());
-            String sql = "INSERT INTO Emergencia (id, nombre, descrip, fecha_inicio, fecha_fin, id_institucion, ubi_emer)" +
+            String sql = "INSERT INTO Emergencia (ID_EMERGENCIA, nombre, descrip, fecha_inicio, fecha_fin, ID_INSTITUCION, ubi_emer)" +
                     "VALUES (:id, :nombre, :descrip, :fecha_inicio, :fecha_fin, :id_institucion, ST_GeomFromText('POINT(" + LonStr + " " + LatStr + ")', 4326))";
             con.createQuery(sql)
                     .addParameter("id_emergencia", emergencia.getID_EMERGENCIA())

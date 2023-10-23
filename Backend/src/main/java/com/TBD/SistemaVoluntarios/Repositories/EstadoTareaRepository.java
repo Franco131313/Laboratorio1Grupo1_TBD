@@ -9,5 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface EstadoTareaRepository{
+    //CREATE: Crear un nuevo estado
+    void createEstadoTarea(EstadoTareaEntity estadoTarea);
+
     List<EstadoTareaEntity> findAll();
+
+    //READ: Buscar a un estado a partir de su ID
+    EstadoTareaEntity findByID_ESTADO(Integer id);
+
+    // DELETE: elimina un estado por ID
+    void deleteById(Integer id);
 }

@@ -24,7 +24,7 @@ public class TareaRepoImp implements TareaRepository{
     {
         try (Connection con = sql2o.open()) {
             String sql = "INSERT INTO tarea (ID_TAREA, nombre, descrip, fecha_inicio, fecha_fin, cant_vol_requeridos, cant_vol_inscritos, ID_EMERGENCIA, ID_ESTADO)" +
-                    "VALUES (:id_tarea, :nombre, :descrip, :fecha_inicio, :fecha_fin, :cant_vol_requeridos, :cant_vol_inscritos, :id_emergencia, :id_estado)";
+                    "VALUES (:ID_TAREA, :nombre, :descrip, :fecha_inicio, :fecha_fin, :cant_vol_requeridos, :cant_vol_inscritos, :id_emergencia, :id_estado)";
             con.createQuery(sql)
                     .addParameter("ID_TAREA", tarea.getID_TAREA())
                     .addParameter("nombre", tarea.getNombre())
@@ -44,7 +44,7 @@ public class TareaRepoImp implements TareaRepository{
     public List<TareaEntity> findAll() {
         try (Connection conn = sql2o.open()) {
             return conn.createQuery("select ID_TAREA, nombre, descrip, cant_vol_requeridos, cant_vol_inscritos, " +
-                            "ID_EMERGENCIA, fecha_inicio, fecha_fin, ID_ESTADO from Tarea order by id ")
+                            "ID_EMERGENCIA, fecha_inicio, fecha_fin, ID_ESTADO from Tarea order by ID_TAREA ")
                     .executeAndFetch(TareaEntity.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
