@@ -178,9 +178,6 @@
                     axios
                       .post(enlace3)
                       .then((response) => {
-                      alert('Usuario registrado exitosamente');
-                    // También puedes redirigir al usuario a otra página
-                    this.$router.push('/');
                     });
                       });
                   })
@@ -191,7 +188,9 @@
                   });
               }
             });
-            
+            alert('Usuario registrado exitosamente');
+                    // También puedes redirigir al usuario a otra página
+                    this.$router.push('/');
         })
         .catch((error) => {
           // La solicitud al backend para registrar al usuario falló
